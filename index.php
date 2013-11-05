@@ -31,7 +31,7 @@
 					  draggable: false,
 					  modal: true,
 					  buttons: {
-						"Commute": function() {
+						"Commut": function() {
 						  var bValid = true;
 						  allFields.removeClass( "ui-state-error" );
 				 
