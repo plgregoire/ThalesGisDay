@@ -15,52 +15,55 @@
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 		
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 	</head>
 	
-	<body>
-		<div id="formDiv" class="commuteFormDiv">
-			<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
-				
-				<label for="thalesOfficeSelect" >Thales Office:</label>
-				<select name="thalesOfficeSelect"  style="width:100%" id="thalesOfficeSelect" class="text ui-widget-content ui-corner-all" tabindex="1">
-					<option value="quebec">Quebec</option>
-				</select>
+	<body data-role="page">
+		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
+        
+		<div id="formDiv" class="commuteFormDiv" data-role="popup" class="ui-dialog-contain ui-overlay-shadow ui-corner-all">
+			<div role="header">
+			</div>
+			
+			<div role="content">
+				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
+					
+					<label for="thalesOfficeSelect" >Thales Office:</label>
+					<select name="thalesOfficeSelect"  style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
+						<option value="quebec">Quebec</option>
+					</select>
 
-				<label for="transportationInput" >Transportation Mode:</label>
-				<select  name="transportationInput" id="transportationInput" style="width:100%" class="text ui-widget-content ui-corner-all" tabindex="2">
-					<option value="bus">Bus</option>
-					<option value="bike">Bike</option>
-					<option value="car">Car</option>
-					<option value="carpooling">Car Pooling</option>
-					<option value="ferry">Ferry</option>
-					<option value="motorbike">Motorbike</option>
-					<option value="subway">Subway</option>
-					<option value="train">Train</option>
-					<option value="tramway">Tramway</option>
-					<option value="walking">Walking</option>
-					<option value="others">Others</option>
-				</select> 
-			</form>
+					<label for="transportationInput" >Transportation Mode:</label>
+					<select name="transportationInput" id="transportationInput" style="width:100%" data-native-menu="false" tabindex="2">
+						<option value="bus">Bus</option>
+						<option value="bike">Bike</option>
+						<option value="car">Car</option>
+						<option value="carpooling">Car Pooling</option>
+						<option value="ferry">Ferry</option>
+						<option value="motorbike">Motorbike</option>
+						<option value="subway">Subway</option>
+						<option value="train">Train</option>
+						<option value="tramway">Tramway</option>
+						<option value="walking">Walking</option>
+						<option value="others">Others</option>
+					</select> 
+					
+					<a href="#" id="Submit" data-role="button">Commute</a>
+				</form>
+			</div>
 		</div>
 		
-		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
-        <script src="js/main.js"></script>
+		<script src="js/main.js"></script>
 		<script type="text/javascript">
 			getLocation();
-			
-			$(function() {
-				  $( "#formDiv" ).dialog({
-					  autoOpen: true,
-					  height: 300,
-					  width: 350,
-					  resizable: false,
-					  draggable: false,
-					  modal: true,
-					  buttons: {
-						"Commute": function() {
+						
+			/*$('#formDiv').simpledialog({
+				'mode': 'string',
+				'buttons': {
+					"Commute": function() {
 						  var bValid = true;
 						  allFields.removeClass( "ui-state-error" );
 				 
@@ -68,16 +71,40 @@
 							$( this ).dialog( "close" );
 						  }
 						}
-					  },
-					  close: function() {
-						allFields.val( "" ).removeClass( "ui-state-error" );
-					  }
-				});
-				
-				$(window).resize(function() {
-					$("#formDiv").dialog("option", "position", "center");
-				});
+				}
+			});*/
+			
+			$(":jqmData(role='page'):last").on("pageshow", function (event) {	
+				$('#formDiv', $(this)).popup("open");
 			});
+			
+			// $(function() {
+				  // $( "#formDiv" ).dialog({
+					  // autoOpen: true,
+					  // height: 300,
+					  // width: 350,
+					  // resizable: false,
+					  // draggable: false,
+					  // modal: true,
+					  // buttons: {
+						// "Commute": function() {
+						  // var bValid = true;
+						  // allFields.removeClass( "ui-state-error" );
+				 
+						  // if ( bValid ) {
+							// $( this ).dialog( "close" );
+						  // }
+						// }
+					  // },
+					  // close: function() {
+						// allFields.val( "" ).removeClass( "ui-state-error" );
+					  // }
+				// });
+				
+				// $(window).resize(function() {
+					// $("#formDiv").dialog("option", "position", "center");
+				// });
+			 //});
 		</script>
 
         <!--<script>
