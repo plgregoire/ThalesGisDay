@@ -46,15 +46,11 @@
         -->
 		<div id="map"></div>
 		
-		<div id="formDiv" class="commuteFormDiv" data-role="popup" class="ui-dialog-contain ui-overlay-shadow ui-corner-all">
-			<div role="header">
-			</div>
-			
-			<div role="content">
+		<div data-role="content">
+			<div id="formPopup" data-role="popup" class="ui-content" data-theme="a" data-transition="pop">
 				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
-					
 					<label for="thalesOfficeSelect" >Thales Office:</label>
-					<select name="thalesOfficeSelect"  style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
+					<select name="thalesOfficeSelect" style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
 						<option value="quebec">Quebec</option>
 					</select>
 
@@ -73,7 +69,7 @@
 						<option value="others">Others</option>
 					</select> 
 					
-					<a href="#" id="Submit" data-role="button">Commute</a>
+					<input type="submit" name="submit" id="submit" value="Submit" data-theme="b" data-icon="arrow-r" data-iconpos="right" />
 				</form>
 			</div>
 		</div>
@@ -96,9 +92,9 @@
 				}
 			});*/
 			
-			$(":jqmData(role='page'):last").on("pageshow", function (event) {	
-				$('#formDiv', $(this)).popup("open");
-			});
+			/*$(":jqmData(role='page'):last").on("pageshow", function (event) {	
+				$('#formDiv', $(this)).popup("open", { history:false });
+			});*/
 			
 			// $(function() {
 				  // $( "#formDiv" ).dialog({
@@ -129,6 +125,8 @@
 			 //});
 			 
 			window.onload = function() {
+				$('#formPopup').popup();
+				$("#formPopup").popup("open");
 			/*
 				var map = new L.Map('map', {
 					center: [0,0],
