@@ -19,11 +19,20 @@
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+		
+		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
+		<![endif]-->
+		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	</head>
 	
 	<body data-role="page">
+		<!--
 		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
-        
+        -->
+		<div id="map"></div>
+		
 		<div id="formDiv" class="commuteFormDiv" data-role="popup" class="ui-dialog-contain ui-overlay-shadow ui-corner-all">
 			<div role="header">
 			</div>
@@ -105,6 +114,53 @@
 					// $("#formDiv").dialog("option", "position", "center");
 				// });
 			 //});
+			 
+			window.onload = function() {
+			/*
+				var map = new L.Map('map', {
+					center: [0,0],
+					zoom: 2
+				});
+
+				 cartodb.createLayer(map, 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json')
+					.addTo(map)
+					.on('done', function(layer) {
+						//do stuff
+					})
+					.on('error', function(err) {
+					  alert("some error occurred: " + err);
+				});
+			*/
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
+					shareable: false,
+					title: false,
+					description: false,
+					search: false,
+					tiles_loader: false,
+					center_lat: 0,
+					center_lon: 0,
+					zoom: 2
+				})
+				.done(function(vis, layers) {
+				  // layer 0 is the base layer, layer 1 is cartodb layer
+				  // setInteraction is disabled by default
+				  layers[1].setInteraction(true);
+				  layers[1].on('featureOver', function(e, pos, latlng, data) {
+					cartodb.log.log(e, pos, latlng, data);
+				  });
+
+				  // you can get the native map to work with it
+				  // depending if you use google maps or leaflet
+				  map = vis.getNativeMap();
+
+				  // now, perform any operations you need
+				  // map.setZoom(3)
+				  // map.setCenter(new google.maps.Latlng(...))
+				})
+				.error(function(err) {
+					console.log(err);
+				});
+		  }
 		</script>
 
         <!--<script>
