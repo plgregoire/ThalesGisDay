@@ -15,7 +15,6 @@ $apikey = "a63643ebababa18d92daf45dfbb4ebb9d868cecb";
 
 $request = "http://thalesgisday.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(OFFICE,%20TRANSPORTATION)%20VALUES%20({$office},'{$transportation}')&api_key={$apikey}";
 $data = file_get_contents($request);
-die($request);
-die($data);
+
 
 ?>
