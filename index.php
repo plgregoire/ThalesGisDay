@@ -125,8 +125,7 @@
 			 //});
 			 
 			window.onload = function() {
-				$('#formPopup').popup();
-				$("#formPopup").popup("open");
+				$("#formPopup").popup("open", {history:false, dismissible: false});
 			/*
 				var map = new L.Map('map', {
 					center: [0,0],
