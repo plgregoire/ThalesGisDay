@@ -10,7 +10,7 @@ function getLocation() {
 function handlePosition(position) {
 	// TODO Retrieve nearest Thales office from php and with callback, set Thales office in dropdown
 	$.ajax({
-		url: "index.php",	
+		url: "ajax.php",	
 		type: "POST",	  
 		data: {
 			latitude: position.coords.latitude,
