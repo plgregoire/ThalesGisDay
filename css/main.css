@@ -2,7 +2,7 @@
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen  
-and (max-device-width : 480px) {
+and (max-width : 480px) {
 	.mapFrame {
 		visiblity: hidden;
 	}
