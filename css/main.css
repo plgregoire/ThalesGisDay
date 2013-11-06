@@ -4,11 +4,11 @@
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-	mapFrame {
+	.mapFrame {
 		visiblity: hidden;
 	}
 	
-	commuteFormDiv{
+	.commuteFormDiv{
 		width:100%;
 		position: absolute;
 		height: 100%;
@@ -72,7 +72,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 
 
-	commuteFormDiv{
+	.commuteFormDiv{
 		
 	}
 
