@@ -31,7 +31,7 @@
 					  draggable: false,
 					  modal: true,
 					  buttons: {
-						"Commut": function() {
+						"Commute": function() {
 						  var bValid = true;
 						  allFields.removeClass( "ui-state-error" );
 				 
@@ -79,8 +79,7 @@
 			</form>
 		</div>
 		
-		<iframe width='100%' height='400' frameborder='0' src='http://plgregoire.cartodb.com/viz/3bd3847e-4631-11e3-8ba8-81c2da385f70/embed_map?title=true&description=true&search=false&shareable=false&cartodb_logo=true&layer_selector=true&legends=true&scrollwheel=true&sublayer_options=1&sql=&zoom=1&center_lat=29.99300228455108&center_lon=0'></iframe>
-		
+		<iframe width='100%' height='400' frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
         <script src="js/main.js"></script>
 		
 
