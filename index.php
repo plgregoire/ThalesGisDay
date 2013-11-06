@@ -12,13 +12,26 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
-
+		<style>
+			html, body, #map{
+			height:100%;
+			padding:0;
+			margin:0;
+			}
+		</style>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 		
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+		
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+		<!--[if lte IE 8]>
+			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+		<![endif]-->
+
+		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 		
 		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 		<!--[if lte IE 8]>
@@ -137,9 +150,9 @@
 					description: false,
 					search: false,
 					tiles_loader: false,
-					center_lat: 0,
-					center_lon: 0,
-					zoom: 2
+					center_lat: 46.81,
+					center_lon: -71.31,
+					zoom: 6
 				})
 				.done(function(vis, layers) {
 				  // layer 0 is the base layer, layer 1 is cartodb layer

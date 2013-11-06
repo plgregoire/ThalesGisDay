@@ -1,18 +1,6 @@
 
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen  
-and (max-width : 480px) {
-	.mapFrame {
-		visiblity: hidden;
-	}
-	
-	.commuteFormDiv{
-		width:100%;
-		position: absolute;
-		height: 100%;
-	}
-}
+
 
 
 
