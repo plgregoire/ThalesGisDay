@@ -16,42 +16,9 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 		
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-		<script type="text/javascript">
-		
-		
-			$(function() {
-				  $( "#formDiv" ).dialog({
-					  autoOpen: true,
-					  height: 300,
-					  width: 350,
-					  resizable: false,
-					  draggable: false,
-					  modal: true,
-					  buttons: {
-						"Commute": function() {
-						  var bValid = true;
-						  allFields.removeClass( "ui-state-error" );
-				 
-						  if ( bValid ) {
-							$( this ).dialog( "close" );
-						  }
-						}
-					  },
-					  close: function() {
-						allFields.val( "" ).removeClass( "ui-state-error" );
-					  }
-				});
-				
-				$(window).resize(function() {
-					$("#formDiv").dialog("option", "position", "center");
-				});
-			});
-		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	</head>
-	
 	
 	<body>
 		<div id="formDiv" class="commuteFormDiv">
@@ -81,7 +48,37 @@
 		
 		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
         <script src="js/main.js"></script>
-		
+		<script type="text/javascript">
+			getLocation();
+			
+			$(function() {
+				  $( "#formDiv" ).dialog({
+					  autoOpen: true,
+					  height: 300,
+					  width: 350,
+					  resizable: false,
+					  draggable: false,
+					  modal: true,
+					  buttons: {
+						"Commute": function() {
+						  var bValid = true;
+						  allFields.removeClass( "ui-state-error" );
+				 
+						  if ( bValid ) {
+							$( this ).dialog( "close" );
+						  }
+						}
+					  },
+					  close: function() {
+						allFields.val( "" ).removeClass( "ui-state-error" );
+					  }
+				});
+				
+				$(window).resize(function() {
+					$("#formDiv").dialog("option", "position", "center");
+				});
+			});
+		</script>
 
         <!--<script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -92,7 +89,13 @@
 	</body>
 </html>
 
-
+<?php
+	if (isset($_POST['latitude']) && isset($_POST['longitude'])) {
+		// todo retrieve thales office
+		$nearestThalesOffice = json_encode(array("thalesOffice" => "Thales Quebec"));
+		echo $nearestThalesOffice;
+	}
+?>
 
 
   
