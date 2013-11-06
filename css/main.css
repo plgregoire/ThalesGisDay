@@ -7,6 +7,12 @@ and (max-device-width : 480px) {
 	mapFrame {
 		visiblity: hidden;
 	}
+	
+	commuteFormDiv{
+		width:100%;
+		position: absolute;
+		height: 100%;
+	}
 }
 
 /* Smartphones (landscape) ----------- */
@@ -66,7 +72,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 
 
-
+	commuteFormDiv{
+		
+	}
 
 
 
