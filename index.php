@@ -147,6 +147,7 @@
 					description: false,
 					search: false,
 					tiles_loader: false,
+                                        legends:false,
 					center_lat: 46.81,
 					center_lon: -71.31,
 					zoom: 6
