@@ -19,14 +19,14 @@ function handlePosition(position) {
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-					if (data.result) {
-						alert(data.result);
-					}
-
-					if (data.error) {
-						alert(data.error);
-					}
+				if (data.thalesOffice) {
+					console.log(data.thalesOffice);
 				}
+
+				if (data.error) {
+					console.log(data.error);
+				}
+			}
 		});
 	
 	console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
