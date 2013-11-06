@@ -62,24 +62,24 @@
 					<option value="quebec">Quebec</option>
 				</select>
 
-				<label for="transportationInput" >Transportation:</label>
+				<label for="transportationInput" >Transportation Mode:</label>
 				<select  name="transportationInput" id="transportationInput" style="width:100%" class="text ui-widget-content ui-corner-all" tabindex="2">
-					<option value="car">Car</option>
-					<option value="walking">Walking</option>
-					<option value="bike">Bike</option>
-					<option value="motorbike">Motorbike</option>
-					<option value="train">Train</option>
-					<option value="subway">Subway</option>
-					<option value="tramway">Tramway</option>
-					<option value="carpooling">Car Pooling</option>
 					<option value="bus">Bus</option>
+					<option value="bike">Bike</option>
+					<option value="car">Car</option>
+					<option value="carpooling">Car Pooling</option>
 					<option value="ferry">Ferry</option>
+					<option value="motorbike">Motorbike</option>
+					<option value="subway">Subway</option>
+					<option value="train">Train</option>
+					<option value="tramway">Tramway</option>
+					<option value="walking">Walking</option>
 					<option value="others">Others</option>
 				</select> 
 			</form>
 		</div>
 		
-		<iframe width='100%' height='400' frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
+		<iframe width='100%'style="position: absolute; height: 100%" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
         <script src="js/main.js"></script>
 		
 
