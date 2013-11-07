@@ -1,14 +1,13 @@
 function getLocation(callback) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(handlePosition.bind(null, callback), handleError);
+		navigator.geolocation.getCurrentPosition(callback, handleError);
 	}
 	else {
 		console.log("Geolocation is not supported by this browser.");
 	}
 }
 
-function handlePosition(callback, position) {
-	// TODO Retrieve nearest Thales office from php and with callback, set Thales office in dropdown
+function getClosestOffice(position, callback) {
 	$.ajax({
 		url: "closestOffice.php",	
 		type: "POST",	  
@@ -22,7 +21,7 @@ function handlePosition(callback, position) {
 				if (data.features) {
 					console.log(data.features[0].properties.address);
 					
-					callback(data.features[0].properties);
+					callback(data.features[0]);
 				}
 
 				if (data.error) {
@@ -51,4 +50,5 @@ function handleError(error) {
 		  console.log(x.innerHTML="An unknown error occurred.");
 		  break;
 	}
-}
+}		
+			
