@@ -8,8 +8,17 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-type: application/json; charset=utf-8');
 
-$request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20bureaux_thales";
-$data = file_get_contents($request);
-die($data);
+
+if(isset($_GET["country_id"]) && is_numeric($_GET["country_id"])){
+  $id = $_GET["country_id"];
+  $request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20bureaux_thales inner join tm_world_borders_simpl_0_3 where tm_world_borders_simpl_0_3.cartodb_id = {$id}";
+  $data = file_get_contents($request);
+  die($data);
+}else{
+  $request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20bureaux_thales";
+  $data = file_get_contents($request);
+  die($data);
+}
+
 
 ?>
