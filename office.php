@@ -11,7 +11,7 @@ header('Content-type: application/json; charset=utf-8');
 
 if(isset($_GET["country_id"]) && is_numeric($_GET["country_id"])){
   $id = $_GET["country_id"];
-  $request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20bureaux_thales.cartodb_id,bureaux_thales.the_geom, bureaux_thales.name,%20FROM%20bureaux_thales inner join tm_world_borders_simpl_0_3 on st_contains(tm_world_borders_simpl_0_3.the_geom,%20bureaux_thales.the_geom) where tm_world_borders_simpl_0_3.cartodb_id = {$id}";
+  $request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT bureaux_thales.cartodb_id,bureaux_thales.the_geom, bureaux_thales.name FROM%20bureaux_thales inner join tm_world_borders_simpl_0_3 on st_contains(tm_world_borders_simpl_0_3.the_geom,%20bureaux_thales.the_geom) where tm_world_borders_simpl_0_3.cartodb_id = {$id}";
   die($request);
   $data = file_get_contents($request);
   die($data);
