@@ -1,0 +1,58 @@
+#results{
+  marker-fill: #FF5C00;
+  marker-line-color: #FFF;
+  marker-line-width: 2;
+  marker-line-opacity: 1;
+  marker-opacity: 0.9;
+  marker-placement: point;
+  marker-type: ellipse;
+  marker-allow-overlap: true;
+  marker-clip: false;
+  marker-multi-policy: largest;
+}
+#results [ hitcount <= 3] {
+   marker-width: 25.0;
+}
+#results [ hitcount <= 3] {
+   marker-width: 23.3;
+}
+#results [ hitcount <= 3] {
+   marker-width: 21.7;
+}
+#results [ hitcount <= 3] {
+   marker-width: 20.0;
+}
+#results [ hitcount <= 3] {
+   marker-width: 18.3;
+}
+#results [ hitcount <= 3] {
+   marker-width: 16.7;
+}
+#results [ hitcount <= 1] {
+   marker-width: 15.0;
+}
+#results [ hitcount <= 1] {
+   marker-width: 13.3;
+}
+#results [ hitcount <= 1] {
+   marker-width: 11.7;
+}
+#results [ hitcount <= 1] {
+   marker-width: 10.0;
+}
+
+#results [ weightaverage <= 10] {
+   marker-fill: #FF0000;
+}
+#results [ weightaverage <= 8] {
+   marker-fill: #FF8800;
+}
+#results [ weightaverage <= 6] {
+   marker-fill: #FFFF00;
+}
+#results [ weightaverage <= 4] {
+   marker-fill: #88FF00;
+}
+#results [ weightaverage <= 2] {
+   marker-fill: #00FF00;
+}
