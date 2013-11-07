@@ -59,7 +59,7 @@
 								$data = json_decode($json);
 								foreach ($data->features as $feature){
 									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->address) 
+										. htmlspecialchars($feature->properties->name) 
 										. '</option>';
 								}						
 							?>
