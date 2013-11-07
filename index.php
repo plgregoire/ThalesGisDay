@@ -41,127 +41,64 @@
 		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	</head>
 	
-	<body >
-		<!--
-		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
-        -->
-		<div id="map"></div>
-		<div data-role="page">
-			<div data-role="content">
-				<div data-role="popup" class="ui-content" data-dismissible="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
-					<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
-						<div data-role="fieldcontain">
-							<label for="thalesOfficeSelect" class="select">Thales Office:</label>
-							<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
-								<?php
-											
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
-									$data = json_decode($json);
-									foreach ($data->features as $feature){
-										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-											. htmlspecialchars($feature->properties->address) 
-											. '</option>';
-									}						
-								?>
-							</select>
-						</div>
-						<div data-role="fieldcontain">			
-							<label for="transportationInput" class="select">Transportation Mode:</label>
-							<select name="transportationInput" id="transportationInput" tabindex="2">
-								<?php
-												
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
-									$data = json_decode($json);
-									foreach ($data->features as $feature){
-										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-											. htmlspecialchars($feature->properties->name) 
-											. '</option>';
-									}						
-								?>
-								
-							</select>
-						</div>
-						
-					
-						<div style="text-align: center;">		
-							<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
-						</div>
+	<body data-role="page">
 		
+		<div id="map"></div>
+
+		<div data-role="content">
+			<div data-role="popup" class="ui-content" data-dismissible="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
+					<div data-role="fieldcontain">
+						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
+						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
+							<?php
+										
+								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+								$data = json_decode($json);
+								foreach ($data->features as $feature){
+									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+										. htmlspecialchars($feature->properties->address) 
+										. '</option>';
+								}						
+							?>
+						</select>
+					</div>
+					<div data-role="fieldcontain">			
+						<label for="transportationInput" class="select">Transportation Mode:</label>
+						<select name="transportationInput" id="transportationInput" tabindex="2">
+							<?php
+											
+								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
+								$data = json_decode($json);
+								foreach ($data->features as $feature){
+									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+										. htmlspecialchars($feature->properties->name) 
+										. '</option>';
+								}						
+							?>
 							
-						</div>
-					</form>
-				</div>
+						</select>
+					</div>
+					
+				
+					<div style="text-align: center;">		
+						<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
+					</div>
+	
+						
+					</div>
+				</form>
 			</div>
 		</div>
 		
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
-			var map;
 			
-			/*$('#formDiv').simpledialog({
-				'mode': 'string',
-				'buttons': {
-					"Commute": function() {
-						  var bValid = true;
-						  allFields.removeClass( "ui-state-error" );
-				 
-						  if ( bValid ) {
-							$( this ).dialog( "close" );
-						  }
-						}
-				}
-			});*/
-			
-			/*$(":jqmData(role='page'):last").on("pageshow", function (event) {	
-				$('#formDiv', $(this)).popup("open", { history:false });
-			});*/
-			
-			// $(function() {
-				  // $( "#formDiv" ).dialog({
-					  // autoOpen: true,
-					  // height: 300,
-					  // width: 350,
-					  // resizable: false,
-					  // draggable: false,
-					  // modal: true,
-					  // buttons: {
-						// "Commute": function() {
-						  // var bValid = true;
-						  // allFields.removeClass( "ui-state-error" );
-				 
-						  // if ( bValid ) {
-							// $( this ).dialog( "close" );
-						  // }
-						// }
-					  // },
-					  // close: function() {
-						// allFields.val( "" ).removeClass( "ui-state-error" );
-					  // }
-				// });
-				
-				// $(window).resize(function() {
-					// $("#formDiv").dialog("option", "position", "center");
-				// });
-			 //});
 			 
 			window.onload = function() {
 				$("#formPopup").popup("open");
-			/*
-				var map = new L.Map('map', {
-					center: [0,0],
-					zoom: 2
-				});
-
-				 cartodb.createLayer(map, 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json')
-					.addTo(map)
-					.on('done', function(layer) {
-						//do stuff
-					})
-					.on('error', function(err) {
-					  alert("some error occurred: " + err);
-				});
-			*/
+			
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 					shareable: false,
 					title: false,
