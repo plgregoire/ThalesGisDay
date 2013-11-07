@@ -26,12 +26,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-		<!--[if lte IE 8]>
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
-		<![endif]-->
-
-		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	
 		
 		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 		<!--[if lte IE 8]>
@@ -40,47 +35,57 @@
 		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	</head>
 	
-	<body data-role="page">
+	<body >
 		<!--
 		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
         -->
 		<div id="map"></div>
+		<div data-role="page">
+			<div data-role="content">
+				<div data-role="popup" class="ui-content" data-dismissible="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+					<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+					<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
+						<div data-role="fieldcontain">
+							<label for="thalesOfficeSelect" class="select">Thales Office:</label>
+							<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
+								<?php
+											
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+									$data = json_decode($json);
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->address) 
+											. '</option>';
+									}						
+								?>
+							</select>
+						</div>
+						<div data-role="fieldcontain">			
+							<label for="transportationInput" class="select">Transportation Mode:</label>
+							<select name="transportationInput" id="transportationInput" tabindex="2">
+								<?php
+												
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
+									$data = json_decode($json);
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->name) 
+											. '</option>';
+									}						
+								?>
+								
+							</select>
+						</div>
+						
+					
+						<div style="text-align: center;">		
+							<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
+						</div>
 		
-		<div data-role="content">
-			<div id="formPopup" data-role="popup" class="ui-content" data-theme="a" data-transition="pop">
-				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
-					<label for="thalesOfficeSelect" >Thales Office:</label>
-					<select name="thalesOfficeSelect" style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
-						<?php
 							
-							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
-							$data = json_decode($json);
-							foreach ($data->features as $feature){
-								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-									. htmlspecialchars($feature->properties->address) 
-									. '</option>';
-							}						
-						?>
-					</select>
-
-					<label for="transportationInput" >Transportation Mode:
-					<select name="transportationInput" id="transportationInput" style="width:100%" data-native-menu="false" tabindex="2">
-					
-						<?php
-							
-							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
-							$data = json_decode($json);
-							foreach ($data->features as $feature){
-								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-									. htmlspecialchars($feature->properties->name) 
-									. '</option>';
-							}						
-						?>
-			
-					</select> 
-					
-					<input type="submit" name="submit" id="submit" value="Submit" data-theme="b" data-icon="arrow-r" data-iconpos="right" />
-				</form>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 		
@@ -135,7 +140,7 @@
 			 //});
 			 
 			window.onload = function() {
-				$("#formPopup").popup("open", {history:false, dismissible: false});
+				$("#formPopup").popup("open");
 			/*
 				var map = new L.Map('map', {
 					center: [0,0],
