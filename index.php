@@ -91,42 +91,48 @@
 		
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
-			
+			var map;
+			 
+			 function displayMap(center_lat, center_lon, zoom){
+				 $('#map').empty();
+				 cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
+						shareable: false,
+						title: false,
+						description: false,
+						search: false,
+						tiles_loader: false,
+						legends:false,
+						center_lat: center_lat,
+						center_lon: center_lon,
+						zoom: zoom
+					})
+					.done(function(vis, layers) {
+						// layer 0 is the base layer, layer 1 is cartodb layer
+						// setInteraction is disabled by default
+						layers[1].setInteraction(true);
+						layers[1].on('featureOver', function(e, pos, latlng, data) {
+							cartodb.log.log(e, pos, latlng, data);
+						});
+
+						// you can get the native map to work with it
+						// depending if you use google maps or leaflet
+						map = vis.getNativeMap();
+
+						// now, perform any operations you need
+						// map.setZoom(3)
+						// map.setCenter(new google.maps.Latlng(...))
+						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.jpg" style="position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
+						setTimeout(function(){displayMap(map.getCenter().lat, map.getCenter().lng, map.getZoom())},5000);
+					})
+					.error(function(err) {
+						console.log(err);
+					});
+			 }
 			 
 			window.onload = function() {
 				$("#formPopup").popup("open");
 			
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
-					shareable: false,
-					title: false,
-					description: false,
-					search: false,
-					tiles_loader: false,
-                    legends:false,
-					center_lat: 46.81,
-					center_lon: -71.31,
-					zoom: 6
-				})
-				.done(function(vis, layers) {
-					// layer 0 is the base layer, layer 1 is cartodb layer
-					// setInteraction is disabled by default
-					layers[1].setInteraction(true);
-					layers[1].on('featureOver', function(e, pos, latlng, data) {
-						cartodb.log.log(e, pos, latlng, data);
-					});
-
-					// you can get the native map to work with it
-					// depending if you use google maps or leaflet
-					map = vis.getNativeMap();
-
-					// now, perform any operations you need
-					// map.setZoom(3)
-					// map.setCenter(new google.maps.Latlng(...))
-					$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.jpg" style="position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
-				})
-				.error(function(err) {
-					console.log(err);
-				});
+				displayMap(0, 0, 3);
 				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
