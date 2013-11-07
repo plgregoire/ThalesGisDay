@@ -81,12 +81,8 @@
 						</select>
 					</div>
 					
-				
 					<div style="text-align: center;">		
 						<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
-					</div>
-	
-						
 					</div>
 				</form>
 			</div>
