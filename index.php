@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<link rel="shortcut icon" href="http://designshack.net/favicon.ico">
-		<link rel="icon" href="http://designshack.net/favicon.ico">
+		<link rel="shortcut icon" href="./img/gisday_logo.png">
+		<link rel="icon" href="./img/gisday_logo.png">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
@@ -101,7 +101,7 @@
 					description: false,
 					search: false,
 					tiles_loader: false,
-                                        legends:false,
+                    legends:false,
 					center_lat: 46.81,
 					center_lon: -71.31,
 					zoom: 6
@@ -138,6 +138,14 @@
 						}
 					});
 				});
+				
+				  $('.my-popup-selector').on('popupafteropen', function () {
+      $(this).one('popupafterclose', function () {
+          $(window).one('navigate.popup', function (e) {
+              e.preventDefault();
+          });
+      });
+  });
 			}
 		</script>
 
