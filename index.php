@@ -108,20 +108,21 @@
 					zoom: 6
 				})
 				.done(function(vis, layers) {
-				  // layer 0 is the base layer, layer 1 is cartodb layer
-				  // setInteraction is disabled by default
-				  layers[1].setInteraction(true);
-				  layers[1].on('featureOver', function(e, pos, latlng, data) {
-					cartodb.log.log(e, pos, latlng, data);
-				  });
+					// layer 0 is the base layer, layer 1 is cartodb layer
+					// setInteraction is disabled by default
+					layers[1].setInteraction(true);
+					layers[1].on('featureOver', function(e, pos, latlng, data) {
+						cartodb.log.log(e, pos, latlng, data);
+					});
 
-				  // you can get the native map to work with it
-				  // depending if you use google maps or leaflet
-				  map = vis.getNativeMap();
+					// you can get the native map to work with it
+					// depending if you use google maps or leaflet
+					map = vis.getNativeMap();
 
-				  // now, perform any operations you need
-				  // map.setZoom(3)
-				  // map.setCenter(new google.maps.Latlng(...))
+					// now, perform any operations you need
+					// map.setZoom(3)
+					// map.setCenter(new google.maps.Latlng(...))
+					$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.jpg" style="position:absolute; bottom:8px; left:8px; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
 				})
 				.error(function(err) {
 					console.log(err);
@@ -140,13 +141,13 @@
 					});
 				});
 				
-				  $('.my-popup-selector').on('popupafteropen', function () {
-      $(this).one('popupafterclose', function () {
-          $(window).one('navigate.popup', function (e) {
-              e.preventDefault();
-          });
-      });
-  });
+				$('.my-popup-selector').on('popupafteropen', function () {
+					  $(this).one('popupafterclose', function () {
+						  $(window).one('navigate.popup', function (e) {
+							  e.preventDefault();
+						  });
+					  });
+				});
 			}
 		</script>
 
