@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 		<style>
-			html, body, #map{
+			html, body, #map, #loadingMap{
 			height:100%;
 			padding:0;
 			margin:0;
@@ -42,7 +42,6 @@
 	</head>
 	
 	<body data-role="page">
-		
 		<div id="map"></div>
 
 		<div data-role="content">
@@ -93,8 +92,13 @@
 		<script type="text/javascript">
 			var map;
 			 
+			 function refreshLayer(layer){
+				 layer.setQuery(layer.getQuery());
+				 setTimeout(function(){refreshLayer(layer);},5000);
+			 }
+			 
 			 function displayMap(center_lat, center_lon, zoom){
-				 $('#map').empty();
+	
 				 cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
@@ -113,7 +117,7 @@
 						layers[1].on('featureOver', function(e, pos, latlng, data) {
 							cartodb.log.log(e, pos, latlng, data);
 						});
-
+						refreshLayer(layers[1]);
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
 						map = vis.getNativeMap();
@@ -122,7 +126,7 @@
 						// map.setZoom(3)
 						// map.setCenter(new google.maps.Latlng(...))
 						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.jpg" style="position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
-						setTimeout(function(){displayMap(map.getCenter().lat, map.getCenter().lng, map.getZoom())},5000);
+						
 					})
 					.error(function(err) {
 						console.log(err);
