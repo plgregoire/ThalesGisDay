@@ -50,6 +50,21 @@
 				<form id="commuteform" name="commuteform" method="post" action="index.php">
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
 					<div data-role="fieldcontain">
+						<label for="countrySelect" class="select">Country:</label>
+						<select name="countrySelect" data-native-menu="false" id="countrySelect">
+							<?php
+										
+								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
+								$data = json_decode($json);
+								foreach ($data->features as $feature){
+									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+										. htmlspecialchars($feature->properties->name) 
+										. '</option>';
+								}						
+							?>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
 						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
 						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
 							<?php
