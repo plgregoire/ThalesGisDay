@@ -53,7 +53,7 @@
 					<select name="thalesOfficeSelect" style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
 						<?php
 							
-							$json = file_get_contents("http://.../office.php");
+							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
 							$data = json_decode($json);
 							foreach ($data->features as $feature){
 								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
@@ -68,7 +68,7 @@
 					
 						<?php
 							
-							$json = file_get_contents("http://.../transportation.php");
+							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
 							$data = json_decode($json);
 							foreach ($data->features as $feature){
 								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
