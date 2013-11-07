@@ -19,7 +19,7 @@ function getClosestOffice(position, callback) {
 		dataType: "json",
 		success: function(data) {
 				if (data.features) {
-					console.log(data.features[0].properties.address);
+					console.log(data.features[0].properties.name);
 					
 					callback(data.features[0]);
 				}
