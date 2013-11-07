@@ -49,6 +49,7 @@
 			<div data-role="popup" class="ui-content" data-dismissible="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
 				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
+					<h4>Select the transportation mode you used to commute today.</h4>
 					<div data-role="fieldcontain">
 						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
 						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
