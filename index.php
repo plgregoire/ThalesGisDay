@@ -51,8 +51,16 @@
 				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
 					<label for="thalesOfficeSelect" >Thales Office:</label>
 					<select name="thalesOfficeSelect" style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
-						<option>Quebec</option>
-						<option>Thales France</option>
+						<?php
+							
+							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+							$data = json_decode($json);
+							foreach ($data->features as $feature){
+								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+									. htmlspecialchars($feature->properties->address) 
+									. '</option>';
+							}						
+						?>
 					</select>
 
 					<label for="transportationInput" >Transportation Mode:
