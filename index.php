@@ -55,19 +55,20 @@
 						<option>Thales France</option>
 					</select>
 
-					<label for="transportationInput" >Transportation Mode:</label>
+					<label for="transportationInput" >Transportation Mode:
 					<select name="transportationInput" id="transportationInput" style="width:100%" data-native-menu="false" tabindex="2">
-						<option value="bus">Bus</option>
-						<option value="bike">Bike</option>
-						<option value="car">Car</option>
-						<option value="carpooling">Car Pooling</option>
-						<option value="ferry">Ferry</option>
-						<option value="motorbike">Motorbike</option>
-						<option value="subway">Subway</option>
-						<option value="train">Train</option>
-						<option value="tramway">Tramway</option>
-						<option value="walking">Walking</option>
-						<option value="others">Others</option>
+					
+						<?php
+							
+							$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
+							$data = json_decode($json);
+							foreach ($data->features as $feature){
+								echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+									. htmlspecialchars($feature->properties->name) 
+									. '</option>';
+							}						
+						?>
+			
 					</select> 
 					
 					<input type="submit" name="submit" id="submit" value="Submit" data-theme="b" data-icon="arrow-r" data-iconpos="right" />
