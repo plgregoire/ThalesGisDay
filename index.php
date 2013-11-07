@@ -185,8 +185,7 @@
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
-							// Select by cartodbid instead of name ? (This currently works since there is no value defined in the options)
-							$('#thalesOfficeSelect').val(feature.properties.address).change();
+							$('#thalesOfficeSelect').val(feature.properties.cartodb_id).change();
 							
 							if (map) {
 								map.panTo(feature.geometry.coordinates, null);
