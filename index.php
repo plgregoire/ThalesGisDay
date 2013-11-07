@@ -46,7 +46,7 @@
 		<div id="map"></div>
 
 		<div data-role="content">
-			<div data-role="popup" class="ui-content" style="opacity:0.5;" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+			<div data-role="popup" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
 				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 				<form id="commuteform" name="commuteform" method="post" action="index.php">
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
