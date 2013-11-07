@@ -51,7 +51,8 @@
 				<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
 					<label for="thalesOfficeSelect" >Thales Office:</label>
 					<select name="thalesOfficeSelect" style="width:100%" id="thalesOfficeSelect" data-native-menu="false" tabindex="1">
-						<option value="quebec">Quebec</option>
+						<option>Quebec</option>
+						<option>Thales France</option>
 					</select>
 
 					<label for="transportationInput" >Transportation Mode:</label>
@@ -76,8 +77,11 @@
 		
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
-			getLocation();
-						
+			getLocation(function(officeProperties) {
+				// Select by cartodbid instead of name ? (This currently works since there is no value defined in the options)
+				$('#thalesOfficeSelect').val(officeProperties.address).change();
+			});
+			
 			/*$('#formDiv').simpledialog({
 				'mode': 'string',
 				'buttons': {

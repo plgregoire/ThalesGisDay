@@ -1,33 +1,37 @@
-function getLocation() {
+function getLocation(callback) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(handlePosition, handleError);
+		navigator.geolocation.getCurrentPosition(handlePosition.bind(null, callback), handleError);
 	}
 	else {
 		console.log("Geolocation is not supported by this browser.");
 	}
 }
 
-function handlePosition(position) {
+function handlePosition(callback, position) {
 	// TODO Retrieve nearest Thales office from php and with callback, set Thales office in dropdown
 	$.ajax({
-		url: "ajax.php",	
+		url: "closestOffice.php",	
 		type: "POST",	  
 		data: {
-			latitude: position.coords.latitude,
-			longitude: position.coords.longitude
+			lat: position.coords.latitude,
+			lon: position.coords.longitude
 		},
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-				if (data.thalesOffice) {
-					console.log(data.thalesOffice);
+				if (data.features) {
+					console.log(data.features[0].properties.address);
+					
+					callback(data.features[0].properties);
 				}
 
 				if (data.error) {
-					console.log(data.error);
+					console.log(data.error[0]);
 				}
-			}
-		});
+		},
+		error: function() {
+			console.log('error');
+		}});
 	
 	console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
 }
