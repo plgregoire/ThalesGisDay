@@ -10,7 +10,7 @@ function getLocation(callback) {
 function getClosestOffice(position, callback) {
 	$.ajax({
 		url: "closestOffice.php",	
-		type: "POST",	  
+		type: "GET",	  
 		data: {
 			lat: position.coords.latitude,
 			lon: position.coords.longitude
