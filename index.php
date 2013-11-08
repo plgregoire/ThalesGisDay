@@ -108,22 +108,37 @@
 			var map;
 			 
 			 function refreshLayer(layer){
-				 layer.setQuery(layer.getQuery());
-				 setTimeout(function(){refreshLayer(layer);},5000);
+				// layer.setQuery(layer.getQuery());
+				// setTimeout(function(){refreshLayer(layer);},5000);
 			 }
 			 
-			 function displayMap(center_lat, center_lon, zoom){
-	
-				 cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
+			 function bindEvents() {
+				$('#countrySelect').change(function() {
+					getOfficesByCountry($(this).val(), function(offices) {
+						$('#thalesOfficeSelect option').remove();
+						$('#thalesOfficeSelect').empty();
+						$.each(offices, function(key, value) {
+						  $('#thalesOfficeSelect').append($("<option></option>")
+							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
+						});
+						$('#thalesOfficeSelect').selectmenu('refresh');
+					});
+				});
+			 }
+			 
+			window.onload = function() {
+				$("#formPopup").popup("open");
+			
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
 						search: false,
 						tiles_loader: false,
 						legends:false,
-						center_lat: center_lat,
-						center_lon: center_lon,
-						zoom: zoom
+						center_lat: 0,
+						center_lon: 0,
+						zoom: 3
 					})
 					.done(function(vis, layers) {
 						// layer 0 is the base layer, layer 1 is cartodb layer
@@ -146,26 +161,6 @@
 					.error(function(err) {
 						console.log(err);
 					});
-			 }
-			 
-			 function bindEvents() {
-				$('#countrySelect').change(function() {
-					getOfficesByCountry($(this).val(), function(offices) {
-						$('#thalesOfficeSelect option').remove();
-						$('#thalesOfficeSelect').empty();
-						$.each(offices, function(key, value) {
-						  $('#thalesOfficeSelect').append($("<option></option>")
-							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
-						});
-						$('#thalesOfficeSelect').selectmenu('refresh');
-					});
-				});
-			 }
-			 
-			window.onload = function() {
-				$("#formPopup").popup("open");
-			
-				displayMap(0, 0, 3);
 				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
