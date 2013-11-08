@@ -175,13 +175,7 @@
 					});
 				});
 				
-				$('.my-popup-selector').on('popupafteropen', function () {
-					  $(this).one('popupafterclose', function () {
-						  $(window).one('navigate.popup', function (e) {
-							  e.preventDefault();
-						  });
-					  });
-				});
+			
 				
 				bindEvents();
 			}
