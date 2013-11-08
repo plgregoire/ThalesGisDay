@@ -134,7 +134,7 @@
 						title: false,
 						description: false,
 						search: false,
-						tiles_loader: false,
+						tiles_loader: true,
 						legends:false,
 						center_lat: 0,
 						center_lon: 0,
