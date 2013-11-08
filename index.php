@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<link rel="shortcut icon" href="./img/gisday_logo.png">
-		<link rel="icon" href="./img/gisday_logo.png">
+		<link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+		<link rel="icon" href="http://designshack.net/favicon.ico">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
@@ -25,13 +25,7 @@
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-		<!--[if lte IE 8]>
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
-		<![endif]-->
-
-		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-
+		
 	
 		
 		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
@@ -41,143 +35,170 @@
 		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 	</head>
 	
-	<body data-role="page">
+	<body >
+		<!--
+		<iframe width='100%' style="position: absolute; height: 100%" class="mapFrame" frameborder='0' src='http://thalesgisday.cartodb.com/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=true&sublayer_options=1&sql=&sw_lat=45.73685954736049&sw_lon=-5.053710937499999&ne_lat=52.74959372674114&ne_lon=16.040039062499996'></iframe>
+        -->
 		<div id="map"></div>
-
-		<div data-role="content">
-			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
-				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				<form id="commuteform" name="commuteform" method="post" action="index.php">
-					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
-					<div data-role="fieldcontain">
-						<label for="countrySelect" class="select">Country:</label>
-						<select name="countrySelect" data-native-menu="false" id="countrySelect" data-mini="true">
-							<?php
-										
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
-								$data = json_decode($json);
-								foreach ($data->rows as $row){
-									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
-										. htmlspecialchars($row->country) 
-										. '</option>';
-								}						
-							?>
-						</select>
-					</div>
-					<div data-role="fieldcontain">
-						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
-						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect" data-mini="true">
-							<?php
-										
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
-								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
-										. '</option>';
-								}						
-							?>
-						</select>
-					</div>
-					<div data-role="fieldcontain">			
-						<label for="transportationInput" class="select">Transportation Mode:</label>
-						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
-							<?php
+		<div data-role="page">
+			<div data-role="content">
+				<div data-role="popup" class="ui-content" data-dismissible="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+					<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+					<form id="commuteform" name="commuteform" method="post" action="index.php" style="line-height:2;">
+						<div data-role="fieldcontain">
+							<label for="thalesOfficeSelect" class="select">Thales Office:</label>
+							<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
+								<?php
 											
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
-								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
-										. '</option>';
-								}						
-							?>
-							
-						</select>
-					</div>
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+									$data = json_decode($json);
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->address) 
+											. '</option>';
+									}						
+								?>
+							</select>
+						</div>
+						<div data-role="fieldcontain">			
+							<label for="transportationInput" class="select">Transportation Mode:</label>
+							<select name="transportationInput" id="transportationInput" tabindex="2">
+								<?php
+												
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
+									$data = json_decode($json);
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->name) 
+											. '</option>';
+									}						
+								?>
+								
+							</select>
+						</div>
+						
 					
-					<div style="text-align: center;">		
-						<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
-					</div>
-				</form>
+						<div style="text-align: center;">		
+							<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
+						</div>
+		
+							
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 		
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
 			var map;
-			 
-			 function refreshLayer(layer){
-				layer.setQuery(layer.getQuery());
-				setTimeout(function(){refreshLayer(layer);},5000);
-			 }
-			 
-			 function bindEvents() {
-				$('#countrySelect').change(function() {
-					getOfficesByCountry($(this).val(), function(offices) {
-						$('#thalesOfficeSelect option').remove();
-						$('#thalesOfficeSelect').empty();
-						$.each(offices, function(key, value) {
-						  $('#thalesOfficeSelect').append($("<option></option>")
-							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
-						});
-						$('#thalesOfficeSelect').selectmenu('refresh');
-					});
-				});
-			 }
+			
+			/*$('#formDiv').simpledialog({
+				'mode': 'string',
+				'buttons': {
+					"Commute": function() {
+						  var bValid = true;
+						  allFields.removeClass( "ui-state-error" );
+				 
+						  if ( bValid ) {
+							$( this ).dialog( "close" );
+						  }
+						}
+				}
+			});*/
+			
+			/*$(":jqmData(role='page'):last").on("pageshow", function (event) {	
+				$('#formDiv', $(this)).popup("open", { history:false });
+			});*/
+			
+			// $(function() {
+				  // $( "#formDiv" ).dialog({
+					  // autoOpen: true,
+					  // height: 300,
+					  // width: 350,
+					  // resizable: false,
+					  // draggable: false,
+					  // modal: true,
+					  // buttons: {
+						// "Commute": function() {
+						  // var bValid = true;
+						  // allFields.removeClass( "ui-state-error" );
+				 
+						  // if ( bValid ) {
+							// $( this ).dialog( "close" );
+						  // }
+						// }
+					  // },
+					  // close: function() {
+						// allFields.val( "" ).removeClass( "ui-state-error" );
+					  // }
+				// });
+				
+				// $(window).resize(function() {
+					// $("#formDiv").dialog("option", "position", "center");
+				// });
+			 //});
 			 
 			window.onload = function() {
 				$("#formPopup").popup("open");
-			
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
-						shareable: false,
-						title: false,
-						description: false,
-						search: false,
-						tiles_loader: true,
-						legends:false,
-						center_lat: 0,
-						center_lon: 0,
-						zoom: 3
-					})
-					.done(function(vis, layers) {
-						// layer 0 is the base layer, layer 1 is cartodb layer
-						// setInteraction is disabled by default
-						layers[1].setInteraction(true);
-						layers[1].on('featureOver', function(e, pos, latlng, data) {
-							cartodb.log.log(e, pos, latlng, data);
-						});
-						refreshLayer(layers[1]);
-						// you can get the native map to work with it
-						// depending if you use google maps or leaflet
-						map = vis.getNativeMap();
+			/*
+				var map = new L.Map('map', {
+					center: [0,0],
+					zoom: 2
+				});
 
-						// now, perform any operations you need
-						// map.setZoom(3)
-						// map.setCenter(new google.maps.Latlng(...))
-						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.png" style="position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
-						
+				 cartodb.createLayer(map, 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json')
+					.addTo(map)
+					.on('done', function(layer) {
+						//do stuff
 					})
-					.error(function(err) {
-						console.log(err);
-					});
+					.on('error', function(err) {
+					  alert("some error occurred: " + err);
+				});
+			*/
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
+					shareable: false,
+					title: false,
+					description: false,
+					search: false,
+					tiles_loader: false,
+                                        legends:false,
+					center_lat: 46.81,
+					center_lon: -71.31,
+					zoom: 6
+				})
+				.done(function(vis, layers) {
+				  // layer 0 is the base layer, layer 1 is cartodb layer
+				  // setInteraction is disabled by default
+				  layers[1].setInteraction(true);
+				  layers[1].on('featureOver', function(e, pos, latlng, data) {
+					cartodb.log.log(e, pos, latlng, data);
+				  });
+
+				  // you can get the native map to work with it
+				  // depending if you use google maps or leaflet
+				  map = vis.getNativeMap();
+
+				  // now, perform any operations you need
+				  // map.setZoom(3)
+				  // map.setCenter(new google.maps.Latlng(...))
+				})
+				.error(function(err) {
+					console.log(err);
+				});
 				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
 							$('#thalesOfficeSelect').val(feature.properties.cartodb_id).change();
+							
 							if (map) {
-								map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]), null);
+								map.panTo(feature.geometry.coordinates, null);
 								map.setZoom(8);
-							}	
-						
+							}
 						}
 					});
 				});
-				
-			
-				
-				bindEvents();
 			}
 		</script>
 
