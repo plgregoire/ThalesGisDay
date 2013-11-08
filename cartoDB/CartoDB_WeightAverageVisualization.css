@@ -10,34 +10,34 @@
   marker-clip: false;
   marker-multi-policy: largest;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 25.0;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 23.3;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 21.7;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 20.0;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 18.3;
 }
-#results [ hitcount <= 3] {
+#results [ commitcount <= 3] {
    marker-width: 16.7;
 }
-#results [ hitcount <= 1] {
+#results [ commitcount <= 1] {
    marker-width: 15.0;
 }
-#results [ hitcount <= 1] {
+#results [ commitcount <= 1] {
    marker-width: 13.3;
 }
-#results [ hitcount <= 1] {
+#results [ commitcount <= 1] {
    marker-width: 11.7;
 }
-#results [ hitcount <= 1] {
+#results [ commitcount <= 1] {
    marker-width: 10.0;
 }
 
