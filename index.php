@@ -45,13 +45,13 @@
 		<div id="map"></div>
 
 		<div data-role="content">
-			<div data-role="popup" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
 				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 				<form id="commuteform" name="commuteform" method="post" action="index.php">
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
 					<div data-role="fieldcontain">
 						<label for="countrySelect" class="select">Country:</label>
-						<select name="countrySelect" data-native-menu="false" id="countrySelect">
+						<select name="countrySelect" data-native-menu="false" id="countrySelect" data-mini="true">
 							<?php
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
@@ -66,7 +66,7 @@
 					</div>
 					<div data-role="fieldcontain">
 						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
-						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect">
+						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect" data-mini="true">
 							<?php
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
@@ -81,7 +81,7 @@
 					</div>
 					<div data-role="fieldcontain">			
 						<label for="transportationInput" class="select">Transportation Mode:</label>
-						<select name="transportationInput" id="transportationInput" tabindex="2">
+						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
 							<?php
 											
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
