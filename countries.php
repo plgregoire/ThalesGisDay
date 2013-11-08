@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-type: application/json; charset=utf-8');
 
-$request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20tm_world_borders_simpl_0_3.cartodb_id,tm_world_borders_simpl_0_3.name,%20tm_world_borders_simpl_0_3.the_geom%20FROM%20tm_world_borders_simpl_0_3%20inner%20join%20bureaux_thales%20on%20st_contains(tm_world_borders_simpl_0_3.the_geom,%20bureaux_thales.the_geom) GROUP BY tm_world_borders_simpl_0_3.cartodb_id,tm_world_borders_simpl_0_3.name,%20tm_world_borders_simpl_0_3.the_geom";
+$request = "http://thalesgisday.cartodb.com/api/v2/sql?q=SELECT%20DISTINCT%20bureaux_region_country.country%20FROM%20bureaux_region_country";
 $data = file_get_contents($request);
 die($data);
 
