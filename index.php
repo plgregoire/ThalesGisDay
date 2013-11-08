@@ -71,9 +71,9 @@
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
 								$data = json_decode($json);
-								foreach ($data->rows as $row){
-									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
-										. htmlspecialchars($row->name) 
+								foreach ($data->features as $feature){
+									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+										. htmlspecialchars($feature->properties->name) 
 										. '</option>';
 								}						
 							?>
@@ -109,7 +109,7 @@
 			 
 			 function refreshLayer(layer){
 				 layer.setQuery(layer.getQuery());
-				 setTimeout(function(){refreshLayer(layer);},5000);
+				 //setTimeout(function(){refreshLayer(layer);},5000);
 			 }
 			 
 			 function displayMap(center_lat, center_lon, zoom){
