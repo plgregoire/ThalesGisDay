@@ -166,7 +166,10 @@
 					getClosestOffice(location, function(feature) {
 						if (feature) {
 							$('#thalesOfficeSelect').val(feature.properties.cartodb_id).change();
-							
+							if (map) {
+								map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]), null);
+								map.setZoom(8);
+							}	
 						
 						}
 					});
