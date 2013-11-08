@@ -9,6 +9,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 header('Content-type: application/json; charset=utf-8');
 
 $request = "http://thalesgisday.cartodb.com/api/v2/sql?q=SELECT%20cartodb_id,name%20country%20%20FROM%20tm_world_borders_simpl_0_3";
+// TODO ignore countries that do not contain Thales Offices
 $data = file_get_contents($request);
 die($data);
 
