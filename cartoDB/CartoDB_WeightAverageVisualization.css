@@ -41,18 +41,18 @@
    marker-width: 10.0;
 }
 
-#results [ weightaverage <= 10] {
+#results [ greenfactoraverage <= 10] {
    marker-fill: #FF0000;
 }
-#results [ weightaverage <= 8] {
+#results [ greenfactoraverage <= 8] {
    marker-fill: #FF8800;
 }
-#results [ weightaverage <= 6] {
+#results [ greenfactoraverage <= 6] {
    marker-fill: #FFFF00;
 }
-#results [ weightaverage <= 4] {
+#results [ greenfactoraverage <= 4] {
    marker-fill: #88FF00;
 }
-#results [ weightaverage <= 2] {
+#results [ greenfactoraverage <= 2] {
    marker-fill: #00FF00;
 }
