@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 		<style>
-			html, body, #map, #loadingMap{
+			html, body, #map{
 			height:100%;
 			padding:0;
 			margin:0;
