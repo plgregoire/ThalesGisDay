@@ -54,7 +54,7 @@
 						<select name="countrySelect" data-native-menu="false" id="countrySelect" data-mini="true">
 							<?php
 										
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
+								$json = file_get_contents("http://localhost/countries.php");
 								$data = json_decode($json);
 								foreach ($data->rows as $row){
 									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -109,7 +109,7 @@
 			 
 			 function refreshLayer(layer){
 				 layer.setQuery(layer.getQuery());
-				 //setTimeout(function(){refreshLayer(layer);},5000);
+				 setTimeout(function(){refreshLayer(layer);},5000);
 			 }
 			 
 			 function displayMap(center_lat, center_lon, zoom){
