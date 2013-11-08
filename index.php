@@ -25,12 +25,6 @@
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-		<!--[if lte IE 8]>
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
-		<![endif]-->
-
-		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 
 	
 		
