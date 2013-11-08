@@ -25,7 +25,7 @@ if(isset($_GET["country_id"]) && is_numeric($_GET["country_id"])){
   $getData = http_build_query(
 				array(
 					'format' => 'GeoJSON',
-					'q' => 'SELECT%20*%20FROM%20bureaux_region_country'
+					'q' => 'SELECT * FROM bureaux_region_country'
 				)
 			);
   $request = "http://thalesgisday.cartodb.com/api/v2/sql?".$getData;

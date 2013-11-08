@@ -56,9 +56,9 @@
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
 								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
+								foreach ($data->rows as $row){
+									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+										. htmlspecialchars($row->country) 
 										. '</option>';
 								}						
 							?>
@@ -71,9 +71,9 @@
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
 								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
+								foreach ($data->rows as $row){
+									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+										. htmlspecialchars($row->name) 
 										. '</option>';
 								}						
 							?>

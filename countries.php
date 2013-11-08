@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-type: application/json; charset=utf-8');
 
-$request = "http://thalesgisday.cartodb.com/api/v2/sql?q=SELECT%20DISTINCT%20bureaux_region_country.country%20FROM%20bureaux_region_country";
+$request = "http://thalesgisday.cartodb.com/api/v2/sql?q=SELECT%20DISTINCT%20cartodb_id,%20country%20FROM%20bureaux_region_country";
 $data = file_get_contents($request);
 die($data);
 
