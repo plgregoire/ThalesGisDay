@@ -30,9 +30,34 @@ function getClosestOffice(position, callback) {
 		},
 		error: function() {
 			console.log('error');
-		}});
+		}
+	});
 	
 	console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+}
+
+function getOfficesByCountry(countryId, callback) {
+	$.ajax({
+		url: "office.php",	
+		type: "GET",	  
+		data: {
+			country_id: +countryId
+		},
+		cache: false,
+		dataType: "json",
+		success: function(data) {
+				if (data.features) {					
+					callback(data.features);
+				}
+
+				if (data.error) {
+					console.log(data.error[0]);
+				}
+		},
+		error: function(jqXHR, textStatus, errorThrown ) {
+			console.log('error');
+		}
+	});
 }
 
 function handleError(error) {

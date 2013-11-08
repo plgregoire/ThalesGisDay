@@ -148,6 +148,19 @@
 					});
 			 }
 			 
+			 function bindEvents() {
+				$('#countrySelect').change(function() {
+					getOfficesByCountry($(this).val(), function(offices) {
+						$('#thalesOfficeSelect option').remove();
+						$('#thalesOfficeSelect').val('');
+						$.each(offices, function(key, value) {
+						  $('#thalesOfficeSelect').append($("<option></option>")
+							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
+						});
+					});
+				});
+			 }
+			 
 			window.onload = function() {
 				$("#formPopup").popup("open");
 			
@@ -173,6 +186,8 @@
 						  });
 					  });
 				});
+				
+				bindEvents();
 			}
 		</script>
 
