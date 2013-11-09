@@ -180,7 +180,7 @@
 												submit( map.getCenter().lat, 
 														map.getCenter().lng, 
 														$('#thalesOfficeSelect').val(), 
-														$('#transportationInput').val(),
+														$('#transportationInput').val());
 										});
 				
 				bindEvents();
