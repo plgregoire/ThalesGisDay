@@ -106,10 +106,13 @@
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
 			var map;
+			var layer;
+			var refreshTimeOut;
 			 
-			 function refreshLayer(layer){
+			 function refreshLayer(){
+				window.clearTimeout(refreshTimeOut);
 				layer.setQuery(layer.getQuery());
-				setTimeout(function(){refreshLayer(layer);},5000);
+				refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
 			 }
 			 
 			 function bindEvents() {
@@ -143,11 +146,13 @@
 					.done(function(vis, layers) {
 						// layer 0 is the base layer, layer 1 is cartodb layer
 						// setInteraction is disabled by default
+						
 						layers[1].setInteraction(true);
 						layers[1].on('featureOver', function(e, pos, latlng, data) {
 							cartodb.log.log(e, pos, latlng, data);
 						});
-						refreshLayer(layers[1]);
+						layer = layers[1];
+						refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
 						map = vis.getNativeMap();
@@ -180,7 +185,11 @@
 												submit( map.getCenter().lat, 
 														map.getCenter().lng, 
 														$('#thalesOfficeSelect').val(), 
-														$('#transportationInput').val());
+														$('#transportationInput').val(),
+														function(){
+															
+															refreshLayer();
+														});
 										});
 				
 				bindEvents();

@@ -7,7 +7,7 @@ function getLocation(callback) {
 	}
 }
 
-function submit(latitude, longitude, office, transportation) {
+function submit(latitude, longitude, office, transportation, callback) {
 	
 	$.ajax({
 		url: "submit.php",	
@@ -22,11 +22,12 @@ function submit(latitude, longitude, office, transportation) {
 		dataType: "json",
 		success: function(data) {
 				console.log('submit success');
+				callback();
 				
 		},
 		error: function() {
 			console.log('submit error');
-
+			callback();
 		}
 	});
 	
