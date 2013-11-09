@@ -129,7 +129,7 @@
 			window.onload = function() {
 				$("#formPopup").popup("open");
 			
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/8e05b3e0-48d2-11e3-a3a0-095180c6d797/viz.json', {
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
