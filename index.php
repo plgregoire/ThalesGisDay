@@ -71,9 +71,9 @@
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
 								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
+								foreach ($data->rows as $row){
+									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+										. htmlspecialchars($row->name) 
 										. '</option>';
 								}						
 							?>
@@ -122,7 +122,7 @@
 						$('#thalesOfficeSelect').empty();
 						$.each(offices, function(key, value) {
 						  $('#thalesOfficeSelect').append($("<option></option>")
-							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
+							 .attr("value", value.cartodb_id).text(value.name));
 						});
 						$('#thalesOfficeSelect').selectmenu('refresh');
 					});
