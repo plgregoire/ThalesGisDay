@@ -45,7 +45,7 @@
 		<div id="map"></div>
 
 		<div data-role="content">
-			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+			<div data-role="popup" data-mini="true" class="ui-contain" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
 				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 				<div>
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
@@ -130,7 +130,7 @@
 			 }
 			 
 			window.onload = function() {
-				$("#formPopup").popup("open");
+				$("#formPopup").popup("open", {tolerance: "0"});
 			
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
