@@ -26,6 +26,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		<link rel="stylesheet" href="css/leaflet.css">
+		<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog.min.css" /> 
 		<!--[if lte IE 8]>
 			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
 		<![endif]-->
@@ -39,19 +40,21 @@
 		  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
 		<![endif]-->
 		<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+		<script type="text/javascript" src="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog2.min.js"></script>
 	</head>
 	
 	<body data-role="page">
 		<div id="map"></div>
 
-		<div data-role="content">
-			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
-				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right closeButtonCorner">Close</a>
+		<div>
+			<div id="formPopup" style="display:none" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":true,"blankContent":true, "fullScreen":true}'>
 				<div>
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
-					<div data-role="fieldcontain">
-						<label for="countrySelect" class="formLabel">Country:</label>
-						<select name="countrySelect" data-native-menu="false" id="countrySelect" data-mini="true">
+					</br>
+					</br>
+					<div >
+						<label for="countrySelect">Country:</label>
+						<select name="countrySelect" id="countrySelect" data-mini="true">
 							<?php
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
@@ -64,9 +67,9 @@
 							?>
 						</select>
 					</div>
-					<div data-role="fieldcontain">
-						<label for="thalesOfficeSelect" class="formLabel">Thales Office:</label>
-						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect" data-mini="true">
+					<div >
+						<label for="thalesOfficeSelect" >Thales Office:</label>
+						<select name="thalesOfficeSelect" id="thalesOfficeSelect" data-mini="true">
 							<?php
 										
 								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
@@ -79,8 +82,8 @@
 							?>
 						</select>
 					</div>
-					<div data-role="fieldcontain">			
-						<label for="transportationInput" class="formLabel">Transportation Mode:</label>
+					<div >			
+						<label for="transportationInput" >Transportation Mode:</label>
 						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
 							<?php
 											
@@ -97,7 +100,6 @@
 					</div>
 					
 					<div style="text-align: center;">		
-						<button id="closeButton" style="position: absolute, top: 50%;" data-icon="delete" data-inline="true" data-theme="a">Close</button>
 						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
 					</div>
 				</div>
@@ -130,7 +132,7 @@
 				});
 				
 				$('#submitButton').click(function(){
-												$("#formPopup").popup("close");
+												$.mobile.sdCurrentDialog.close();
 												submit( map.getCenter().lat, 
 														map.getCenter().lng, 
 														$('#thalesOfficeSelect').val(), 
@@ -141,16 +143,12 @@
 														});
 										});
 				
-				$('#closeButton').click(function(){
-												$("#formPopup").popup("close");
-										});
-				
 				
 			 }
 			 
 			window.onload = function() {
-				$("#formPopup").popup("open");
-			
+				//$("#formPopup").popup("open");
+			$("#formPopup").simpledialog2();
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
