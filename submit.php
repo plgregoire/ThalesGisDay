@@ -18,5 +18,6 @@ if(is_numeric($lat) && is_numeric($lon) && is_numeric($office) && is_numeric($tr
   $proxyIPAddress = getenv('HTTP_X_FORWARDED_FOR');
   $request = "http://thalesgisday.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(OFFICE,%20TRANSPORTATION,%20LATITUDE,%20LONGITUDE,%20IPADDRESS,%20PROXYIPADDRESS)%20VALUES%20({$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
   $data = file_get_contents($request);
+  
 }
 ?>

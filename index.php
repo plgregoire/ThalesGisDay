@@ -45,12 +45,12 @@
 		<div id="map"></div>
 
 		<div data-role="content">
-			<div data-role="popup" data-mini="true" class="ui-contain" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
-				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
+				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right closeButtonCorner">Close</a>
 				<div>
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
 					<div data-role="fieldcontain">
-						<label for="countrySelect" class="select">Country:</label>
+						<label for="countrySelect" class="formLabel">Country:</label>
 						<select name="countrySelect" data-native-menu="false" id="countrySelect" data-mini="true">
 							<?php
 										
@@ -65,7 +65,7 @@
 						</select>
 					</div>
 					<div data-role="fieldcontain">
-						<label for="thalesOfficeSelect" class="select">Thales Office:</label>
+						<label for="thalesOfficeSelect" class="formLabel">Thales Office:</label>
 						<select name="thalesOfficeSelect" data-native-menu="false" id="thalesOfficeSelect" data-mini="true">
 							<?php
 										
@@ -80,7 +80,7 @@
 						</select>
 					</div>
 					<div data-role="fieldcontain">			
-						<label for="transportationInput" class="select">Transportation Mode:</label>
+						<label for="transportationInput" class="formLabel">Transportation Mode:</label>
 						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
 							<?php
 											
@@ -97,6 +97,7 @@
 					</div>
 					
 					<div style="text-align: center;">		
+						<button id="closeButton" style="position: absolute, top: 50%;" data-icon="delete" data-inline="true" data-theme="a">Close</button>
 						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
 					</div>
 				</div>
@@ -127,10 +128,28 @@
 						$('#thalesOfficeSelect').selectmenu('refresh');
 					});
 				});
+				
+				$('#submitButton').click(function(){
+												$("#formPopup").popup("close");
+												submit( map.getCenter().lat, 
+														map.getCenter().lng, 
+														$('#thalesOfficeSelect').val(), 
+														$('#transportationInput').val(),
+														function(){
+															
+															refreshLayer();
+														});
+										});
+				
+				$('#closeButton').click(function(){
+												$("#formPopup").popup("close");
+										});
+				
+				
 			 }
 			 
 			window.onload = function() {
-				$("#formPopup").popup("open", {tolerance:  "100,15,100,15"});
+				$("#formPopup").popup("open");
 			
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
@@ -180,17 +199,7 @@
 					});
 				});
 				
-				$('#submitButton').click(function(){
-												$("#formPopup").popup("close");
-												submit( map.getCenter().lat, 
-														map.getCenter().lng, 
-														$('#thalesOfficeSelect').val(), 
-														$('#transportationInput').val(),
-														function(){
-															
-															refreshLayer();
-														});
-										});
+				
 				
 				bindEvents();
 			}
