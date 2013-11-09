@@ -7,6 +7,32 @@ function getLocation(callback) {
 	}
 }
 
+function submit(latitude, longitude, office, transportation) {
+	
+	$.ajax({
+		url: "submit.php",	
+		type: "POST",	  
+		data: {
+			lat: latitude,
+			lon: longitude,
+			office: office,
+			transportation: transportation
+		},
+		cache: false,
+		dataType: "json",
+		success: function(data) {
+				console.log('submit success');
+				
+		},
+		error: function() {
+			console.log('submit error');
+
+		}
+	});
+	
+	console.log("Latitude: " + latitude + " Longitude: " + longitude + " office: " + office + " transportation: " + transportation);
+}
+
 function getClosestOffice(position, callback) {
 	$.ajax({
 		url: "closestOffice.php",	

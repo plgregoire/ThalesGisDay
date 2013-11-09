@@ -47,7 +47,7 @@
 		<div data-role="content">
 			<div data-role="popup" data-mini="true" class="ui-content" data-dismissible="false" data-history="false" id="formPopup" aria-disabled="false" data-disabled="false" data-overlay-theme="a" data-shadow="true" data-corners="true" data-transition="none" data-position-to="window" >
 				<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				<form id="commuteform" name="commuteform" method="post" action="index.php">
+				<div>
 					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
 					<div data-role="fieldcontain">
 						<label for="countrySelect" class="select">Country:</label>
@@ -97,9 +97,9 @@
 					</div>
 					
 					<div style="text-align: center;">		
-						<button style="position: absolute, top: 50%;" type="submit" data-icon="check" data-inline="true" data-theme="b">Submit</button>
+						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 		
@@ -175,7 +175,13 @@
 					});
 				});
 				
-			
+				$('#submitButton').click(function(){
+												$("#formPopup").popup("close");
+												submit( map.getCenter().lat, 
+														map.getCenter().lng, 
+														$('#thalesOfficeSelect').val(), 
+														$('#transportationInput').val(),
+										});
 				
 				bindEvents();
 			}
