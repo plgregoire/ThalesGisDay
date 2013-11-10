@@ -50,13 +50,14 @@
 		<div id="map"></div>
 
 		<div>
-			<div id="formPopup" style="display:none" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
+			<div id="formPopup" style="display:none;" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
 				<div class="dialogContent">
 					<div >
-						<label class="formInstruction">Select the transportation mode you used to commute today.</label>
+						<label style="font-weight:bold;">Select the transportation mode you used to commute today.</label>
 					</div>
+					</br>
 					<div >
-						<label for="countrySelect">Country:</label>
+						<label style="font-weight:bold;" for="countrySelect">Country:</label>
 						<select name="countrySelect" id="countrySelect" data-mini="true">
 							<?php
 										
@@ -71,7 +72,7 @@
 						</select>
 					</div>
 					<div >
-						<label for="thalesOfficeSelect" >Thales Office:</label>
+						<label style="font-weight:bold;" for="thalesOfficeSelect" >Thales Office:</label>
 						<select name="thalesOfficeSelect" id="thalesOfficeSelect" data-mini="true">
 							<?php
 										
@@ -86,7 +87,7 @@
 						</select>
 					</div>
 					<div >			
-						<label for="transportationInput" >Transportation Mode:</label>
+						<label style="font-weight:bold;" for="transportationInput" >Transportation Mode:</label>
 						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
 							<?php
 											
@@ -101,7 +102,7 @@
 							
 						</select>
 					</div>
-					
+					</br>
 					<div style="text-align: center; white-space:nowrap;">		
 						<button id="seeResultButton" style="position: absolute, top: 50%;" data-inline="true">See Results</button>
 						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
