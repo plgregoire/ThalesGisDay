@@ -49,7 +49,7 @@
 	<body data-role="page">
 		<div id="map"></div>
 
-		<div>
+		<div >
 			<div id="formPopup" style="display:none;" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
 				<div class="dialogContent">
 					<div >
@@ -184,7 +184,7 @@
 						// now, perform any operations you need
 						// map.setZoom(3)
 						// map.setCenter(new google.maps.Latlng(...))
-						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.png" style="position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
+						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.png" class="thalesLogo" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
 						
 					})
 					.error(function(err) {

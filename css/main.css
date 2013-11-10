@@ -16,6 +16,10 @@
 	margin:10px;
 }
 
+.thalesLogo{
+position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;
+}
+
 
 
 
@@ -48,6 +52,10 @@ and (max-width : 479px) {
 	.ui-corner-all {
 		-webkit-border-radius: .0em;
 		border-radius: .0em;
+	}
+	
+	.thalesLogo{
+		display:none;
 	}
 
 }
