@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        
 		<style>
 			html, body, #map{
 			height:100%;
@@ -22,12 +22,14 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 		
 		
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		<link rel="stylesheet" href="css/leaflet.css">
-		<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog.min.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.simpledialog.css" /> 
+		
+		<link rel="stylesheet" href="css/main.css">
 		<!--[if lte IE 8]>
 			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
 		<![endif]-->
@@ -48,11 +50,11 @@
 		<div id="map"></div>
 
 		<div>
-			<div id="formPopup" style="display:none" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":true,"blankContent":true, "fullScreen":true}'>
-				<div>
-					<label class="formInstruction">Select the transportation mode you used to commute today.</label>
-					</br>
-					</br>
+			<div id="formPopup" style="display:none" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
+				<div class="dialogContent">
+					<div >
+						<label class="formInstruction">Select the transportation mode you used to commute today.</label>
+					</div>
 					<div >
 						<label for="countrySelect">Country:</label>
 						<select name="countrySelect" id="countrySelect" data-mini="true">
@@ -100,7 +102,8 @@
 						</select>
 					</div>
 					
-					<div style="text-align: center;">		
+					<div style="text-align: center; white-space:nowrap;">		
+						<button id="seeResultButton" style="position: absolute, top: 50%;" data-inline="true">See Results</button>
 						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
 					</div>
 				</div>
@@ -144,7 +147,9 @@
 														});
 										});
 				
-				
+				$('#seeResultButton').click(function(){
+													$.mobile.sdCurrentDialog.close();
+												});
 			 }
 			 
 			window.onload = function() {
@@ -155,7 +160,7 @@
 						title: false,
 						description: false,
 						search: false,
-						tiles_loader: true,
+						tiles_loader: false,
 						legends:false,
 						center_lat: 0,
 						center_lon: 0,
