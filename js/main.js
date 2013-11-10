@@ -116,15 +116,15 @@ function handleError(error) {
 		if ( self.isDialog === true ) {
 			return true;
 		} else {
+			var realHeight = $(self.sdHeader).height();
+			$(self.sdIntContent).children('div').each(function(e) { 
+				realHeight += $(this).height(); 
+			});
+			
 			if ( o.fullScreen === true && ( coords.width < 400 || coords.winTop + coords.high < 400 || o.fullScreenForce === true ) ) {
-				var realHeight = $(self.sdHeader).height();
-				$(self.sdIntContent).children('div').each(function(e) { 
-					realHeight += $(this).height(); 
-				});
-				
-				self.sdIntContent.css({'border': 'none', 'position': 'absolute', 'top': coords.fullTop, 'left': coords.fullLeft, 'height': realHeight, 'width': coords.width, 'maxWidth': coords.width, 'z-index': 100000005 }).removeClass('ui-simpledialog-hidden');
+				self.sdIntContent.css({'border': 'none', 'position': 'absolute', 'top': coords.fullTop, 'left': coords.fullLeft, 'height': realHeight < coords.high ? coords.high : realHeight, 'width': coords.width, 'maxWidth': coords.width, 'z-index': 100000005 }).removeClass('ui-simpledialog-hidden');
 			} else {
-				self.sdIntContent.css({'position': 'absolute', 'top': coords.winTop, 'left': coords.winLeft}).removeClass('ui-simpledialog-hidden');
+				self.sdIntContent.css({'position': 'absolute', 'top': coords.winTop, 'left': coords.winLeft, 'height': realHeight }).removeClass('ui-simpledialog-hidden');
 			}
 		}
 	}
