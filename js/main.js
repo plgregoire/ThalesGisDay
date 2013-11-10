@@ -104,3 +104,28 @@ function handleError(error) {
 	}
 }		
 			
+/* Override jQuery mobile events */
+ $.widget( "mobile.simpledialog2", $.mobile.simpledialog2, {
+	_orientChange: function(e) {
+		var self = e.data.widget,
+			o = e.data.widget.options,
+			coords = e.data.widget._getCoords(e.data.widget);
+		
+		e.stopPropagation();
+		
+		if ( self.isDialog === true ) {
+			return true;
+		} else {
+			if ( o.fullScreen === true && ( coords.width < 400 || coords.winTop + coords.high < 400 || o.fullScreenForce === true ) ) {
+				var realHeight = $(self.sdHeader).height();
+				$(self.sdIntContent).children('div').each(function(e) { 
+					realHeight += $(this).height(); 
+				});
+				
+				self.sdIntContent.css({'border': 'none', 'position': 'absolute', 'top': coords.fullTop, 'left': coords.fullLeft, 'height': realHeight, 'width': coords.width, 'maxWidth': coords.width, 'z-index': 100000005 }).removeClass('ui-simpledialog-hidden');
+			} else {
+				self.sdIntContent.css({'position': 'absolute', 'top': coords.winTop, 'left': coords.winLeft}).removeClass('ui-simpledialog-hidden');
+			}
+		}
+	}
+});

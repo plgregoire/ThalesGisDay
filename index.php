@@ -50,7 +50,7 @@
 		<div id="map"></div>
 
 		<div >
-			<div id="formPopup" style="display:none;" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
+			<div id="formPopup" style="display:none;" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true, "width": "400px"}'>
 				<div class="dialogContent">
 					<fieldset>
 						<legend style="font-weight:bold;">Select your Thales office:</legend>
@@ -156,8 +156,8 @@
 			 }
 			 
 			window.onload = function() {
-				//$("#formPopup").popup("open");
-			$("#formPopup").simpledialog2();
+				$("#formPopup").simpledialog2().resize();
+				
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
