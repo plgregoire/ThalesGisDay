@@ -1,5 +1,7 @@
 
-
+fieldset legend {
+	margin-bottom: 7px;
+}
 
 
 
@@ -20,8 +22,18 @@
 position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;
 }
 
+/* Override jQueryMobile css */
+/* Display whole dialog title */
+.ui-header .ui-title {
+	margin: .6em 10% .6em;
+}
 
+/* Center buttons */
+.ui-btn-inline {
+	margin-left:0;
+}
 
+/* End Override */
 
 
 	/* All Smartphones in portrait and landscape ----------- */

@@ -52,60 +52,62 @@
 		<div >
 			<div id="formPopup" style="display:none;" data-options='{"mode":"blank","blankContentAdopt":true,"headerText":"Thales GIS Day","headerClose":false,"blankContent":true, "fullScreen":true}'>
 				<div class="dialogContent">
-					<div >
-						<label style="font-weight:bold;">Select the transportation mode you used to commute today.</label>
-					</div>
-					</br>
-					<div >
-						<label style="font-weight:bold;" for="countrySelect">Country:</label>
-						<select name="countrySelect" id="countrySelect" data-mini="true">
-							<?php
-										
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
-								$data = json_decode($json);
-								foreach ($data->rows as $row){
-									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
-										. htmlspecialchars($row->country) 
-										. '</option>';
-								}						
-							?>
-						</select>
-					</div>
-					<div >
-						<label style="font-weight:bold;" for="thalesOfficeSelect" >Thales Office:</label>
-						<select name="thalesOfficeSelect" id="thalesOfficeSelect" data-mini="true">
-							<?php
-										
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
-								$data = json_decode($json);
-								foreach ($data->rows as $row){
-									echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
-										. htmlspecialchars($row->name) 
-										. '</option>';
-								}						
-							?>
-						</select>
-					</div>
-					<div >			
-						<label style="font-weight:bold;" for="transportationInput" >Transportation Mode:</label>
-						<select name="transportationInput" id="transportationInput" tabindex="2" data-mini="true">
-							<?php
+					<fieldset>
+						<legend style="font-weight:bold;">Select your Thales office:</legend>
+						<div>
+							<label for="countrySelect">Country:</label>
+							<select name="countrySelect" id="countrySelect" tabindex="1" data-mini="true">
+								<?php
 											
-								$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
-								$data = json_decode($json);
-								foreach ($data->features as $feature){
-									echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
-										. htmlspecialchars($feature->properties->name) 
-										. '</option>';
-								}						
-							?>
-							
-						</select>
-					</div>
-					</br>
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
+									$data = json_decode($json);
+									foreach ($data->rows as $row){
+										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+											. htmlspecialchars($row->country) 
+											. '</option>';
+									}						
+								?>
+							</select>
+						</div>
+						<div>
+							<label for="thalesOfficeSelect" >Thales Office:</label>
+							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
+								<?php
+											
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+									$data = json_decode($json);
+									foreach ($data->rows as $row){
+										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+											. htmlspecialchars($row->name) 
+											. '</option>';
+									}						
+								?>
+							</select>
+						</div>
+					</fieldset>
+					<br />
+					<fieldset>
+						<legend style="font-weight:bold;">What is the primary mode of transportation in your daily commute?</legend>
+						<div >			
+							<select name="transportationInput" id="transportationInput" tabindex="3" data-mini="true">
+								<?php
+												
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
+									$data = json_decode($json);
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->name) 
+											. '</option>';
+									}						
+								?>
+								
+							</select>
+						</div>
+					</fieldset>
+					<br />
 					<div style="text-align: center; white-space:nowrap;">		
-						<button id="seeResultButton" style="position: absolute, top: 50%;" data-inline="true">See Results</button>
-						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b">Submit</button>
+						<button id="seeResultButton" style="position: absolute, top: 50%;" data-inline="true" tabindex="5">See Results</button>
+						<button id="submitButton" style="position: absolute, top: 50%;" data-icon="check" data-inline="true" data-theme="b" tabindex="4">Submit</button>
 					</div>
 				</div>
 			</div>
