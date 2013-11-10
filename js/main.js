@@ -21,9 +21,8 @@ function submit(latitude, longitude, office, transportation, callback) {
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-				console.log('submit success');
-				callback();
-				
+			console.log('submit success');
+			callback();
 		},
 		error: function() {
 			console.log('submit error');
@@ -45,15 +44,15 @@ function getClosestOffice(position, callback) {
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-				if (data.features) {
-					console.log(data.features[0].properties.name);
-					
-					callback(data.features[0]);
-				}
+			if (data.features) {
+				console.log(data.features[0].properties.name);
+				
+				callback(data.features[0]);
+			}
 
-				if (data.error) {
-					console.log(data.error[0]);
-				}
+			if (data.error) {
+				console.log(data.error[0]);
+			}
 		},
 		error: function() {
 			console.log('error');
@@ -61,6 +60,54 @@ function getClosestOffice(position, callback) {
 	});
 	
 	console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+}
+
+function getCountryByOffice(officeId, callback) {
+	$.ajax({
+		url: "office.php",	
+		type: "GET",	  
+		data: {
+			office_id: +officeId
+		},
+		cache: false,
+		dataType: "json",
+		success: function(data) {
+			if (data.features) {					
+				callback(data.features[0].properties.cartodb_id);
+			}
+
+			if (data.error) {
+				console.log(data.error[0]);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown ) {
+			console.log('error');
+		}
+	});
+}
+
+function getOfficeCoordinates(officeId, callback) {
+	$.ajax({
+		url: "office.php",	
+		type: "GET",	  
+		data: {
+			office_id: +officeId
+		},
+		cache: false,
+		dataType: "json",
+		success: function(data) {
+			if (data.features) {					
+				callback(data.features[0].geometry.coordinates);
+			}
+
+			if (data.error) {
+				console.log(data.error[0]);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown ) {
+			console.log('error');
+		}
+	});
 }
 
 function getOfficesByCountry(countryId, callback) {

@@ -118,11 +118,19 @@
 			var map;
 			var layer;
 			var refreshTimeOut;
+			var selectedOfficeId;
 			 
 			 function refreshLayer(){
 				window.clearTimeout(refreshTimeOut);
 				layer.setQuery(layer.getQuery());
 				refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
+			 }
+			 
+			 function centerOn(coords, zoom) {
+				if (map) {
+					map.panTo(new L.LatLng(coords[1], coords[0]), null);
+					map.setZoom(8);
+				}
 			 }
 			 
 			 function bindEvents() {
@@ -134,7 +142,20 @@
 						  $('#thalesOfficeSelect').append($("<option></option>")
 							 .attr("value", value.cartodb_id).text(value.name));
 						});
+						
 						$('#thalesOfficeSelect').selectmenu('refresh');
+						
+						if (selectedOfficeId && selectedOfficeId != null) {
+							$('#thalesOfficeSelect').val(selectedOfficeId);
+							selectedOfficeId = null;
+						}
+						$('#thalesOfficeSelect').change();
+					});
+				});
+				
+				$('#thalesOfficeSelect').change(function() {
+					getOfficeCoordinates($(this).val(), function(coordinates) {
+						centerOn(coordinates, 8);
 					});
 				});
 				
@@ -196,17 +217,13 @@
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
-							$('#thalesOfficeSelect').val(feature.properties.cartodb_id).change();
-							if (map) {
-								map.panTo(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]), null);
-								map.setZoom(8);
-							}	
-						
+							getCountryByOffice(feature.properties.cartodb_id, function(countryId) {
+								selectedOfficeId = feature.properties.cartodb_id;
+								$('#countrySelect').val(countryId).change();
+							});
 						}
 					});
 				});
-				
-				
 				
 				bindEvents();
 			}
