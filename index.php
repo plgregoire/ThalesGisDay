@@ -125,9 +125,9 @@
 			var selectedOfficeId;
 			 
 			 function refreshLayer(){
-				window.clearTimeout(refreshTimeOut);
+			//	window.clearTimeout(refreshTimeOut);
 				layer.setQuery(layer.getQuery());
-				refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
+			//	refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
 			 }
 			 
 			 function centerOn(coords, zoom) {
