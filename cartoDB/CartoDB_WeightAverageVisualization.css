@@ -10,49 +10,49 @@
   marker-clip: false;
   marker-multi-policy: largest;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 25.0;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 23.3;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 21.7;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 20.0;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 18.3;
 }
-#results [ commitcount <= 3] {
+#results [ submissions <= 3] {
    marker-width: 16.7;
 }
-#results [ commitcount <= 1] {
+#results [ submissions <= 1] {
    marker-width: 15.0;
 }
-#results [ commitcount <= 1] {
+#results [ submissions <= 1] {
    marker-width: 13.3;
 }
-#results [ commitcount <= 1] {
+#results [ submissions <= 1] {
    marker-width: 11.7;
 }
-#results [ commitcount <= 1] {
+#results [ submissions <= 1] {
    marker-width: 10.0;
 }
 
-#results [ greenfactoraverage <= 10] {
+#results [ "Green factor average" <= 10] {
    marker-fill: #FF0000;
 }
-#results [ greenfactoraverage <= 8] {
+#results [ "Green factor average" <= 8] {
    marker-fill: #FF8800;
 }
-#results [ greenfactoraverage <= 6] {
+#results [ "Green factor average" <= 6] {
    marker-fill: #FFFF00;
 }
-#results [ greenfactoraverage <= 4] {
+#results [ "Green factor average" <= 4] {
    marker-fill: #88FF00;
 }
-#results [ greenfactoraverage <= 2] {
+#results [ "Green factor average" <= 2] {
    marker-fill: #00FF00;
 }
