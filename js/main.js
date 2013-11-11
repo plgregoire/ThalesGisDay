@@ -26,7 +26,6 @@ function submit(latitude, longitude, office, transportation, callback) {
 		},
 		error: function() {
 			console.log('submit error');
-			callback();
 		}
 	});
 	
