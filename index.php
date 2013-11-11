@@ -193,7 +193,7 @@
 				$("#formPopup").simpledialog2().resize();
 				
 				//http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/117d7744-4af4-11e3-a335-81d7c0cd8f54/viz.json', {
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
