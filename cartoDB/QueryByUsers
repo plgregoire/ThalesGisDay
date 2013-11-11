@@ -1,0 +1,6 @@
+SELECT results.cartodb_id, results.latitude, results.longitude, results.the_geom_webmercator, transportation.green_weight
+FROM results
+INNER JOIN transportation
+ON
+results.transportation = transportation.cartodb_id
+GROUP BY results.cartodb_id, results.the_geom_webmercator, transportation.green_weight
