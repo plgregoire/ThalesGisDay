@@ -65,10 +65,10 @@
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
 									$data = json_decode($json);
 									
-									$defaultCountryId = '';
-									if (!empty($data->rows)) {
-										$defaultCountryId = $data->rows[0]->cartodb_id;
-									}
+									//$defaultCountryId = '';
+									//if (!empty($data->rows)) {
+									//	$defaultCountryId = $data->rows[0]->cartodb_id;
+									//}
 									
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -82,12 +82,12 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-									$query = "";
-									if (!empty($defaultCountryId)) {
-										$query = "?country_id=".$defaultCountryId;
-									}
+									//$query = "";
+									//if (!empty($defaultCountryId)) {
+									//	$query = "?country_id=".$defaultCountryId;
+									//}
 									
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php"/*.$query*/);
 									$data = json_decode($json);
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -143,6 +143,11 @@
 					map.panTo(new L.LatLng(coords[1], coords[0]), null);
 					map.setZoom(8);
 				}
+			 }
+			 
+			 function initialisation() {
+				// Default to France
+				$('#countrySelect').val(65).change();
 			 }
 			 
 			 function bindEvents() {
@@ -235,6 +240,10 @@
 						console.log(err);
 					});
 				
+				bindEvents();
+				
+				initialisation();
+				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
@@ -245,8 +254,6 @@
 						}
 					});
 				});
-				
-				bindEvents();
 			}
 		</script>
 
