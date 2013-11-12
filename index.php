@@ -82,12 +82,13 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-									//$query = "";
-									//if (!empty($defaultCountryId)) {
-									//	$query = "?country_id=".$defaultCountryId;
-									//}
+									$defaultCountryId = 65; // France
+									$query = "";
+									if (!empty($defaultCountryId)) {
+										$query = "?country_id=".$defaultCountryId;
+									}
 									
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php"/*.$query*/);
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
 									$data = json_decode($json);
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -133,9 +134,7 @@
 			var selectedOfficeId;
 			 
 			 function refreshLayer(){
-			//	window.clearTimeout(refreshTimeOut);
 				layer.setQuery(layer.getQuery());
-			//	refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
 			 }
 			 
 			 function centerOn(coords, zoom) {
@@ -147,7 +146,7 @@
 			 
 			 function initialisation() {
 				// Default to France
-				$('#countrySelect').val(65).change();
+				$('#countrySelect').val(65).selectmenu('refresh');
 			 }
 			 
 			 function bindEvents() {
