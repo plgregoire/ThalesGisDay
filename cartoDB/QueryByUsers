@@ -1,6 +1,11 @@
-SELECT results.cartodb_id, results.latitude, results.longitude, results.the_geom_webmercator, transportation.green_weight
+SELECT results.cartodb_id, results.latitude, results.longitude, results.the_geom_webmercator, transportation.green_weight, bureaux_region_country.name
 FROM results
 INNER JOIN transportation
 ON
 results.transportation = transportation.cartodb_id
-GROUP BY results.cartodb_id, results.the_geom_webmercator, transportation.green_weight
+INNER JOIN bureaux_region_country
+ON results.office = bureaux_region_country.cartodb_id
+WHERE results.latitude IS NOT NULL AND
+results.longitude IS NOT NULL
+GROUP BY results.cartodb_id, results.the_geom_webmercator, transportation.green_weight,
+bureaux_region_country.name
