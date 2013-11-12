@@ -62,9 +62,14 @@
 							<label for="countrySelect">Country:</label>
 							<select name="countrySelect" id="countrySelect" tabindex="1" data-mini="true">
 								<?php
-											
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
 									$data = json_decode($json);
+									
+									$defaultCountryId = '';
+									if (!empty($data->rows)) {
+										$defaultCountryId = $data->rows[0]->cartodb_id;
+									}
+									
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
 											. htmlspecialchars($row->country) 
@@ -77,8 +82,12 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-											
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php");
+									$query = "";
+									if (!empty($defaultCountryId)) {
+										$query = "?country_id=".$defaultCountryId;
+									}
+									
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
 									$data = json_decode($json);
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -94,8 +103,7 @@
 						<legend style="font-weight:bold;">What is the primary mode of transportation in your daily commute?</legend>
 						<div >			
 							<select name="transportationInput" id="transportationInput" tabindex="3" data-mini="true">
-								<?php
-												
+								<?php		
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/transportation.php");
 									$data = json_decode($json);
 									foreach ($data->features as $feature){
