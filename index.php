@@ -200,8 +200,7 @@
 			window.onload = function() {
 				$("#formPopup").simpledialog2().resize();
 				
-				//http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/05106560-4640-11e3-9bc2-0f8a20733a5f/viz.json', {
+				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
