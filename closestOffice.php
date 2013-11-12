@@ -17,7 +17,7 @@ if(!isset($_GET["lat"]) || !isset($_GET["lon"])){
 $lat = $_GET["lat"];
 $lon = $_GET["lon"];
 if(is_numeric($lat) && is_numeric($lon)){
-  $request = "http://thalesgisday.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20bureaux_thales%20ORDER%20BY%20ST_DISTANCE(ST_SETSRID(ST_POINT({$lon},{$lat}),4326),the_geom)%20LIMIT%201";
+  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20bureaux_region_country%20ORDER%20BY%20ST_DISTANCE(ST_SETSRID(ST_POINT({$lon},{$lat}),4326),the_geom)%20LIMIT%201";
   $data = file_get_contents($request);
   die($data);
 }

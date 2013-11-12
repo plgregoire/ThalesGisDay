@@ -205,6 +205,10 @@
 			window.onload = function() {
 				$("#formPopup").simpledialog2().resize();
 				
+				bindEvents();
+				
+				initialisation();
+				
 				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
 						shareable: false,
 						title: false,
@@ -225,6 +229,7 @@
 							cartodb.log.log(e, pos, latlng, data);
 						});
 						layer = layers[1];
+												
 						refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
@@ -239,10 +244,6 @@
 					.error(function(err) {
 						console.log(err);
 					});
-				
-				bindEvents();
-				
-				initialisation();
 				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
