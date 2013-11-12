@@ -132,6 +132,7 @@
 			var layer;
 			var refreshTimeOut;
 			var selectedOfficeId;
+			var accuratePosition;
 			 
 			 function refreshLayer(){
 				layer.setQuery(layer.getQuery());
@@ -177,8 +178,18 @@
 				
 				$('#submitButton').click(function(){
 												$.mobile.sdCurrentDialog.close();
-												submit( map.getCenter().lat, 
-														map.getCenter().lng, 
+												
+												
+												var lat = map.getCenter().lat;
+												var lng = map.getCenter().lng;
+												if (accuratePosition) {
+													console.log('Using accurate position');
+													lat = accuratePosition.coords.latitude;
+													lng = accuratePosition.coords.longitude;
+												}
+												
+												submit( lat, 
+														lng, 
 														$('#thalesOfficeSelect').val(), 
 														$('#transportationInput').val(),
 														function(){
@@ -208,7 +219,7 @@
 				
 				initialisation();
 				
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
+				cartodb.createVis('map', 'http://gisdayatthales.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
@@ -253,6 +264,10 @@
 							});
 						}
 					});
+				});
+				
+				getMoreAccurateLocation(function(location) {
+					accuratePosition = location;
 				});
 			}
 		</script>
