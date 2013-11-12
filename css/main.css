@@ -1,6 +1,7 @@
 
 fieldset legend {
 	margin-bottom: 7px;
+	display: table; /* Enable line wrapping in IE */
 }
 
 .formInstruction{
