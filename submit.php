@@ -13,7 +13,7 @@ $lon = $_POST["lon"];
 $office = $_POST["office"];
 $transportation = $_POST["transportation"];
 if(is_numeric($lat) && is_numeric($lon) && is_numeric($office) && is_numeric($transportation)){
-  $apikey = "53cb290cbfbca55ec6170ac319531238a97ae42a0";
+  $apikey = "3cb290cbfbca55ec6170ac319531238a97ae42a0";
   $ipaddress = getenv('REMOTE_ADDR');
   $proxyIPAddress = getenv('HTTP_X_FORWARDED_FOR');
   $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(OFFICE,%20TRANSPORTATION,%20LATITUDE,%20LONGITUDE,%20IPADDRESS,%20PROXYIPADDRESS)%20VALUES%20({$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
