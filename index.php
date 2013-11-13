@@ -208,7 +208,7 @@
 				$(document).on('popupafteropen', '#popupSubmitted', function() {					
 					setTimeout(function () {
 						$('#popupSubmitted').popup('close');
-					}, 5000);
+					}, 2500);
 				});
 			 }
 			 
