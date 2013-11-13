@@ -148,6 +148,9 @@
 			 function initialisation() {
 				// Default to France
 				$('#countrySelect').val(65).selectmenu('refresh');
+				
+				// Default to Car
+				$('#transportationInput').val(1).selectmenu('refresh');
 			 }
 			 
 			 function bindEvents() {
