@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
         <link rel="stylesheet" href="css/normalize.min.css">
         
@@ -82,12 +82,13 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-									//$query = "";
-									//if (!empty($defaultCountryId)) {
-									//	$query = "?country_id=".$defaultCountryId;
-									//}
+									$defaultCountryId = 65; // France
+									$query = "";
+									if (!empty($defaultCountryId)) {
+										$query = "?country_id=".$defaultCountryId;
+									}
 									
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php"/*.$query*/);
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
 									$data = json_decode($json);
 									foreach ($data->rows as $row){
 										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
@@ -131,11 +132,10 @@
 			var layer;
 			var refreshTimeOut;
 			var selectedOfficeId;
+			var accuratePosition;
 			 
 			 function refreshLayer(){
-			//	window.clearTimeout(refreshTimeOut);
 				layer.setQuery(layer.getQuery());
-			//	refreshTimeOut = setTimeout(function(){refreshLayer();},5000);
 			 }
 			 
 			 function centerOn(coords, zoom) {
@@ -147,7 +147,10 @@
 			 
 			 function initialisation() {
 				// Default to France
-				$('#countrySelect').val(65).change();
+				$('#countrySelect').val(65).selectmenu('refresh');
+				
+				// Default to Car
+				$('#transportationInput').val(1).selectmenu('refresh');
 			 }
 			 
 			 function bindEvents() {
@@ -178,8 +181,18 @@
 				
 				$('#submitButton').click(function(){
 												$.mobile.sdCurrentDialog.close();
-												submit( map.getCenter().lat, 
-														map.getCenter().lng, 
+												
+												
+												var lat = map.getCenter().lat;
+												var lng = map.getCenter().lng;
+												if (accuratePosition) {
+													console.log('Using accurate position');
+													lat = accuratePosition.coords.latitude;
+													lng = accuratePosition.coords.longitude;
+												}
+												
+												submit( lat, 
+														lng, 
 														$('#thalesOfficeSelect').val(), 
 														$('#transportationInput').val(),
 														function(){
@@ -198,14 +211,18 @@
 				$(document).on('popupafteropen', '#popupSubmitted', function() {					
 					setTimeout(function () {
 						$('#popupSubmitted').popup('close');
-					}, 5000);
+					}, 2500);
 				});
 			 }
 			 
 			window.onload = function() {
 				$("#formPopup").simpledialog2().resize();
 				
-				cartodb.createVis('map', 'http://thalesgisday.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
+				bindEvents();
+				
+				initialisation();
+				
+				cartodb.createVis('map', 'http://gisdayatthales.cartodb.com/api/v2/viz/2e43a0c6-4bbf-11e3-9010-6d1de2be0463/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
@@ -225,6 +242,7 @@
 							cartodb.log.log(e, pos, latlng, data);
 						});
 						layer = layers[1];
+												
 						refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
@@ -240,10 +258,6 @@
 						console.log(err);
 					});
 				
-				bindEvents();
-				
-				initialisation();
-				
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
@@ -253,6 +267,10 @@
 							});
 						}
 					});
+				});
+				
+				getMoreAccurateLocation(function(location) {
+					accuratePosition = location;
 				});
 			}
 		</script>

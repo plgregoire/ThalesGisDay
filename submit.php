@@ -6,7 +6,7 @@ header("Pragma: no-cache");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: X-Requested-With");
 
-//header('Content-type: application/json; charset=utf-8');
+header('Content-type: application/json; charset=utf-8');
 
 $lat = $_POST["lat"];
 $lon = $_POST["lon"];
@@ -19,5 +19,6 @@ if(is_numeric($lat) && is_numeric($lon) && is_numeric($office) && is_numeric($tr
   $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(OFFICE,%20TRANSPORTATION,%20LATITUDE,%20LONGITUDE,%20IPADDRESS,%20PROXYIPADDRESS)%20VALUES%20({$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
   $data = file_get_contents($request);
   
+  echo $data;
 }
 ?>

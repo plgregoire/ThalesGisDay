@@ -7,6 +7,15 @@ function getLocation(callback) {
 	}
 }
 
+function getMoreAccurateLocation(callback) {
+	if (navigator.geolocation) {
+		navigator.geolocation.watchPosition(callback, handleError, { enableHighAccuracy: true, maximumAge: 30000 });
+	}
+	else {
+		console.log("Geolocation is not supported by this browser.");
+	}
+}
+
 function submit(latitude, longitude, office, transportation, callback) {
 	
 	$.ajax({
@@ -30,7 +39,7 @@ function submit(latitude, longitude, office, transportation, callback) {
 	});
 	
 	console.log("Latitude: " + latitude + " Longitude: " + longitude + " office: " + office + " transportation: " + transportation);
-}
+}     
 
 function getClosestOffice(position, callback) {
 	$.ajax({
