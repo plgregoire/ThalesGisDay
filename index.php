@@ -88,7 +88,7 @@
 										$query = "?country=".$defaultCountry;
 									}
 									
-									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
+									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php?country=France");
 									$data = json_decode($json);
 									foreach ($data->features as $feature){
 										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
@@ -147,7 +147,7 @@
 			 
 			 function initialisation() {
 				// Default to France
-				$('#countrySelect').val(65).selectmenu('refresh');
+				$('#countrySelect').val('France').selectmenu('refresh');
 				
 				// Default to Car
 				$('#transportationInput').val(1).selectmenu('refresh');
