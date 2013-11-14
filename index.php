@@ -82,7 +82,7 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-									$defaultCountry = France;
+									$defaultCountry = 'France';
 									$query = "";
 									if (!empty($defaultCountryId)) {
 										$query = "?country=".$defaultCountry;
@@ -90,9 +90,9 @@
 									
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
 									$data = json_decode($json);
-									foreach ($data->rows as $row){
-										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
-											. htmlspecialchars($row->name) 
+									foreach ($data->features as $feature){
+										echo '<option value="' . htmlspecialchars($feature->properties->cartodb_id) . '">' 
+											. htmlspecialchars($feature->properties->name) 
 											. '</option>';
 									}						
 								?>
@@ -261,10 +261,12 @@
 				getLocation(function(location) {
 					getClosestOffice(location, function(feature) {
 						if (feature) {
-							getCountryByOffice(feature.properties.cartodb_id, function(countryId) {
-								selectedOfficeId = feature.properties.cartodb_id;
-								$('#countrySelect').val(countryId).change();
-							});
+							$('#countrySelect').val(feature.properties.country).change();
+							selectedOfficeId = feature.properties.cartodb_id;
+							//getCountryByOffice(feature.properties.cartodb_id, function(countryId) {
+							//	selectedOfficeId = feature.properties.cartodb_id;
+							//	$('#countrySelect').val(countryId).change();
+							//});
 						}
 					});
 				});

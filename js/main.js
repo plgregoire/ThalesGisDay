@@ -38,6 +38,8 @@ function submit(latitude, longitude, office, transportation, callback) {
 		}
 	});
 	
+	// TODO Stop watchingPosition after submit...
+	
 	console.log("Latitude: " + latitude + " Longitude: " + longitude + " office: " + office + " transportation: " + transportation);
 }     
 
@@ -118,12 +120,12 @@ function getOfficeCoordinates(officeId, callback) {
 	});
 }
 
-function getOfficesByCountry(countryId, callback) {
+function getOfficesByCountry(country, callback) {
 	$.ajax({
 		url: "office.php",	
 		type: "GET",	  
 		data: {
-			country_id: +countryId
+			country: country
 		},
 		cache: false,
 		dataType: "json",
