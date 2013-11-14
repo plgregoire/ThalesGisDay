@@ -18,8 +18,8 @@ if(is_numeric($lat) && is_numeric($lon) && is_numeric($office) && is_numeric($tr
   $proxyIPAddress = getenv('HTTP_X_FORWARDED_FOR');
   $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(the_geom,OFFICE,TRANSPORTATION,LATITUDE,LONGITUDE,IPADDRESS,PROXYIPADDRESS) VALUES(ST_SetSRID(ST_Point({$lon},{$lat}),4326),{$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
   
-  echo($request);
-  die();
+  die($request);
+  
   $data = file_get_contents($request);
   
   echo $data;
