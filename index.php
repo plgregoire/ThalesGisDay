@@ -65,13 +65,13 @@
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/countries.php");
 									$data = json_decode($json);
 									
-									//$defaultCountryId = '';
+									//$defaultCountry = '';
 									//if (!empty($data->rows)) {
-									//	$defaultCountryId = $data->rows[0]->cartodb_id;
+									//	$defaultCountry = $data->rows[0]->country;
 									//}
 									
 									foreach ($data->rows as $row){
-										echo '<option value="' . htmlspecialchars($row->cartodb_id) . '">' 
+										echo '<option value="' . htmlspecialchars($row->country) . '">' 
 											. htmlspecialchars($row->country) 
 											. '</option>';
 									}						
@@ -82,10 +82,10 @@
 							<label for="thalesOfficeSelect" >Thales Office:</label>
 							<select name="thalesOfficeSelect" id="thalesOfficeSelect" tabindex="2" data-mini="true">
 								<?php
-									$defaultCountryId = 65; // France
+									$defaultCountry = France;
 									$query = "";
 									if (!empty($defaultCountryId)) {
-										$query = "?country_id=".$defaultCountryId;
+										$query = "?country=".$defaultCountry;
 									}
 									
 									$json = file_get_contents("http://gisdayatthales.azurewebsites.net/office.php".$query);
