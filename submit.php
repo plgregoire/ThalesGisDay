@@ -6,7 +6,7 @@ header("Pragma: no-cache");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: X-Requested-With");
 
-header('Content-type: application/json; charset=utf-8');
+//header('Content-type: application/json; charset=utf-8');
 
 $lat = $_POST["lat"];
 $lon = $_POST["lon"];
