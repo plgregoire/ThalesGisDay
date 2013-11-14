@@ -11,14 +11,14 @@ header('Content-type: application/json; charset=utf-8');
 
 if(isset($_GET["country_id"]) && is_numeric($_GET["country_id"])){
   $id = $_GET["country_id"];
-  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20bureaux_region_country.cartodb_id%2C%20bureaux_region_country.name%20FROM%20bureaux_region_country%20inner%20join%20tm_world_borders_simpl_0_3%20on%20st_contains(tm_world_borders_simpl_0_3.the_geom%2C%20bureaux_region_country.the_geom)%20where%20bureaux_region_country.cartodb_ge%3D1%20AND%20tm_world_borders_simpl_0_3.cartodb_id%20%3D".$id."%20Order%20by%20bureaux_region_country.name";
+  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20bureaux_region_country.cartodb_id%2C%20bureaux_region_country.name%20FROM%20bureaux_region_country%20inner%20join%20tm_world_borders_simpl_0_3%20on%20st_contains(tm_world_borders_simpl_0_3.the_geom%2C%20bureaux_region_country.the_geom)%20where%20bureaux_region_country.cartodb_ge%3D'1'%20AND%20tm_world_borders_simpl_0_3.cartodb_id%20%3D".$id."%20Order%20by%20bureaux_region_country.name";
 }
 else if (isset($_GET["office_id"]) && is_numeric($_GET["office_id"])){
   $id = $_GET["office_id"];
   $request = "http://gisdayatthales.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20tm_world_borders_simpl_0_3.cartodb_id%2C%20bureaux_region_country.the_geom%20FROM%20bureaux_region_country%20inner%20join%20tm_world_borders_simpl_0_3%20on%20st_contains(tm_world_borders_simpl_0_3.the_geom%2C%20bureaux_region_country.the_geom)%20where%20bureaux_region_country.cartodb_id%20%3D".$id;
 }
 else{
-  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20cartodb_id%2C%20name%20FROM%20bureaux_region_country%20WHERE%20cartodb_ge%3D1%20Order%20by%20name";
+  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20cartodb_id%2C%20name%20FROM%20bureaux_region_country%20WHERE%20cartodb_ge%3D'1'%20Order%20by%20name";
 }
 
   $data = file_get_contents($request);
