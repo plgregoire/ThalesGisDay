@@ -9,7 +9,7 @@ function getLocation(callback) {
 
 function getMoreAccurateLocation(callback) {
 	if (navigator.geolocation) {
-		navigator.geolocation.watchPosition(callback, handleError, { enableHighAccuracy: true, maximumAge: 30000, timeout: 30000 });
+		navigator.geolocation.watchPosition(callback, handleError, { enableHighAccuracy: true, maximumAge: 30000, timeout: 15000 });
 	}
 	else {
 		console.log("Geolocation is not supported by this browser.");
