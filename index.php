@@ -251,7 +251,7 @@
 						// now, perform any operations you need
 						// map.setZoom(3)
 						// map.setCenter(new google.maps.Latlng(...))
-						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo.png" class="thalesLogo" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
+						$('.cartodb-logo').html('<a href="https://www.thalesgroup.com/en/homepage/canada"><img src="img/ThalesLogo_White.png" class="thalesLogo" title="Thales Canada inc." alt="Thales Canada inc." /></a>');
 						
 					})
 					.error(function(err) {
