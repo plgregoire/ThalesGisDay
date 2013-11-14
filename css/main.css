@@ -17,8 +17,21 @@ fieldset legend {
 	margin:10px;
 }
 
-.thalesLogo{
-position:absolute; bottom:8px; left:8px; height:29px!important; display:block; border:none; outline:none;
+.customLogo{
+	position:absolute; bottom:8px; left:8px; 
+}
+
+.customLogo img {
+	display:block; border:none; outline:none;
+}
+
+.customLogo #thalesLogo {
+	height:29px!important;
+}
+
+.customLogo #gisLogo {
+	height:17px!important;
+	margin-left: 6px;
 }
 
 /* Override jQueryMobile css */
