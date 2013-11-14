@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-type: application/json; charset=utf-8');
 
-$request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT distinct(country) FROM bureaux_region_country order by country";
+$request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20distinct(country)%20FROM%20bureaux_region_country%20order%20by%20country";
 
 
 $data = file_get_contents($request);
