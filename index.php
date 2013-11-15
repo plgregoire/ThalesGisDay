@@ -129,6 +129,7 @@
 		<script src="js/main.js"></script>
 		<script type="text/javascript">
 			var map;
+			var nativeMap;
 			var layer;
 			var refreshTimeOut;
 			var selectedOfficeId;
@@ -182,8 +183,8 @@
 												$.mobile.sdCurrentDialog.close();
 												
 												
-												var lat = map.getCenter().lat;
-												var lng = map.getCenter().lng;
+												var lat = nativeMap.getCenter().lat;
+												var lng = nativeMap.getCenter().lng;
 												if (accuratePosition) {
 													console.log('Using accurate position');
 													lat = accuratePosition.coords.latitude;
@@ -245,7 +246,7 @@
 						refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
-						//map = vis.getNativeMap();
+						nativeMap = vis.getNativeMap();
 						map = vis.map;
 
 						// now, perform any operations you need
