@@ -160,7 +160,7 @@
 						$('#thalesOfficeSelect').empty();
 						$.each(offices, function(key, value) {
 						  $('#thalesOfficeSelect').append($("<option></option>")
-							 .attr("value", value.cartodb_id).text(value.name));
+							 .attr("value", value.properties.cartodb_id).text(value.properties.name));
 						});
 						
 						$('#thalesOfficeSelect').selectmenu('refresh');

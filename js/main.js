@@ -130,8 +130,8 @@ function getOfficesByCountry(country, callback) {
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-				if (data.features[0].properties) {					
-					callback(data.features[0].properties);
+				if (data.features) {					
+					callback(data.features);
 				}
 
 				if (data.error) {
