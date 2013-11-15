@@ -222,7 +222,7 @@
 				
 				initialisation();
 				
-				cartodb.createVis('map', 'http://gisday2013atthales.cartodb.com/api/v2/viz/3ecc2394-4d38-11e3-a96f-4f744e192429/viz.json', {
+				cartodb.createVis('map', 'http://gisday2013atthales.cartodb.com/api/v2/viz/b8922ef0-4e1c-11e3-8dc5-49eac9e42462/viz.json', {
 						shareable: false,
 						title: false,
 						description: false,
