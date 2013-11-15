@@ -140,8 +140,7 @@
 			 
 			 function centerOn(coords, zoom) {
 				if (map) {
-					map.panTo(new L.LatLng(coords[1], coords[0]), null);
-					map.setZoom(8);
+					map.setView(new L.LatLng(coords[1], coords[0]), 8);
 				}
 			 }
 			 
@@ -246,7 +245,8 @@
 						refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
-						map = vis.getNativeMap();
+						//map = vis.getNativeMap();
+						map = vis.map;
 
 						// now, perform any operations you need
 						// map.setZoom(3)
