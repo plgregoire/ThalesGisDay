@@ -11,7 +11,7 @@ header('Content-type: application/json; charset=utf-8');
 /*
 if(isset($_GET["country_id"])){
   $id = $_GET["country_id"];
-  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20bureaux_region_country_2.cartodb_id%2C%20bureaux_region_country_2.name%20FROM%20bureaux_region_country_2%20where%20bureaux_region_country_2.country%3D".$id."%20Order%20by%20bureaux_region_country_2.name";
+  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=SELECT%20bureaux_region_country_2.cartodb_id%2C%20bureaux_region_country_2.name%20FROM%20bureaux_region_country_2%20where%20bureaux_region_country_2.country%3D%27".$id."%27%20Order%20by%20bureaux_region_country_2.name";
 }
 else if (isset($_GET["office_id"]) && is_numeric($_GET["office_id"])){
   $id = $_GET["office_id"];
