@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 header('Content-type: application/json; charset=utf-8');
 
-$request = "http://gisdayatthales.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20TRANSPORTATION%20Order%20by%20name";
+$request = "http://gisday2013atthales.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20TRANSPORTATION%20Order%20by%20name";
 $data = file_get_contents($request);
 die($data);
 

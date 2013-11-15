@@ -16,7 +16,7 @@ if(is_numeric($lat) && is_numeric($lon) && is_numeric($office) && is_numeric($tr
   $apikey = "3cb290cbfbca55ec6170ac319531238a97ae42a0";
   $ipaddress = getenv('REMOTE_ADDR');
   $proxyIPAddress = getenv('HTTP_X_FORWARDED_FOR');
-  $request = "http://gisdayatthales.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(the_geom,OFFICE,TRANSPORTATION,LATITUDE,LONGITUDE,IPADDRESS,PROXYIPADDRESS)%20VALUES(ST_SetSRID(ST_Point({$lon},{$lat}),4326),{$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
+  $request = "http://gisday2013atthales.cartodb.com/api/v2/sql?q=INSERT%20INTO%20RESULTS%20(the_geom,OFFICE,TRANSPORTATION,LATITUDE,LONGITUDE,IPADDRESS,PROXYIPADDRESS)%20VALUES(ST_SetSRID(ST_Point({$lon},{$lat}),4326),{$office},{$transportation},{$lat},{$lon},'{$ipaddress}','{$proxyIPAddress}')&api_key={$apikey}";
   
   $data = file_get_contents($request);
   
