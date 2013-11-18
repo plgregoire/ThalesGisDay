@@ -242,7 +242,13 @@
 							cartodb.log.log(e, pos, latlng, data);
 						});
 						
-						//layer = layers[1];
+						layer = layers[1];
+						
+						layers[1].getSubLayer(0).hide();
+						layers[1].getSubLayer(1).hide();
+						layers[1].getSubLayer(2).show();
+						layers[1].getSubLayer(3).show();
+						
 												
 						//refreshLayer();
 						// you can get the native map to work with it
