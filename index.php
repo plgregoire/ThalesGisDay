@@ -252,6 +252,10 @@
 						layer.getSubLayer(2).show();
 						layer.getSubLayer(3).show();
 						
+						layer.getSubLayer(0).setInteraction(true);
+						layer.getSubLayer(1).setInteraction(true);
+						layer.getSubLayer(2).setInteraction(true);
+						layer.getSubLayer(3).setInteraction(true);
 												
 						//refreshLayer();
 						// you can get the native map to work with it
