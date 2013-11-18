@@ -36,8 +36,6 @@
 
 		<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 
-	
-		
 		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
@@ -48,7 +46,10 @@
 	
 	<body data-role="page">
 		<div data-role="popup" id="popupSubmitted" data-history="false" data-transition="slidedown">
-		  <p>Thank you for participating, the selected Thales office has been updated.<p>
+		  <p>Thank you for participating, the selected Thales office has been updated<p>
+		</div>
+		<div data-role="popup" id="popupSeeResults" data-history="false" data-transition="slidedown">
+		  <p>Hit the refresh button to bring back the form<p>
 		</div>
 	
 		<div id="map"></div>
@@ -209,12 +210,22 @@
 					$.mobile.sdCurrentDialog.close();
 						
 					stopWatchingPosition();
+					
+					$('#popupSeeResults').popup('open',{
+					  y: 30
+					});
 				});
 												
 				$(document).on('popupafteropen', '#popupSubmitted', function() {					
 					setTimeout(function () {
 						$('#popupSubmitted').popup('close');
-					}, 2500);
+					}, 5000);
+				});
+												
+				$(document).on('popupafteropen', '#popupSeeResults', function() {					
+					setTimeout(function () {
+						$('#popupSeeResults').popup('close');
+					}, 3000);
 				});
 			 }
 			 
