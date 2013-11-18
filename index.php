@@ -180,33 +180,36 @@
 				});
 				
 				$('#submitButton').click(function(){
-												$.mobile.sdCurrentDialog.close();
-												
-												
-												var lat = nativeMap.getCenter().lat;
-												var lng = nativeMap.getCenter().lng;
-												if (accuratePosition) {
-													console.log('Using accurate position');
-													lat = accuratePosition.coords.latitude;
-													lng = accuratePosition.coords.longitude;
-												}
-												
-												submit( lat, 
-														lng, 
-														$('#thalesOfficeSelect').val(), 
-														$('#transportationInput').val(),
-														function(){
-															refreshLayer();
-															
-															$('#popupSubmitted').popup('open',{
-															  y: 30
-															});
-														});
-										});
+					$.mobile.sdCurrentDialog.close();
+					
+					var lat = nativeMap.getCenter().lat;
+					var lng = nativeMap.getCenter().lng;
+					if (accuratePosition) {
+						console.log('Using accurate position');
+						lat = accuratePosition.coords.latitude;
+						lng = accuratePosition.coords.longitude;
+					}
+					
+					submit( lat, 
+							lng, 
+							$('#thalesOfficeSelect').val(), 
+							$('#transportationInput').val(),
+							function(){
+								refreshLayer();
+								
+								$('#popupSubmitted').popup('open',{
+								  y: 30
+								});
+							
+								stopWatchingPosition();
+							});
+				});
 				
 				$('#seeResultButton').click(function(){
-													$.mobile.sdCurrentDialog.close();
-												});
+					$.mobile.sdCurrentDialog.close();
+						
+					stopWatchingPosition();
+				});
 												
 				$(document).on('popupafteropen', '#popupSubmitted', function() {					
 					setTimeout(function () {
