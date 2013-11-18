@@ -237,13 +237,14 @@
 						// layer 0 is the base layer, layer 1 is cartodb layer
 						// setInteraction is disabled by default
 						
-						layers[1].setInteraction(true);
-						layers[1].on('featureOver', function(e, pos, latlng, data) {
+						layers[3].setInteraction(true);
+						layers[3].on('featureOver', function(e, pos, latlng, data) {
 							cartodb.log.log(e, pos, latlng, data);
 						});
-						layer = layers[1];
+						
+						//layer = layers[1];
 												
-						refreshLayer();
+						//refreshLayer();
 						// you can get the native map to work with it
 						// depending if you use google maps or leaflet
 						nativeMap = vis.getNativeMap();
