@@ -260,7 +260,7 @@
 						
 						layer.getSubLayer(0).hide();
 						layer.getSubLayer(1).hide();
-						layer.getSubLayer(2).show();
+						layer.getSubLayer(2).hide();
 						layer.getSubLayer(3).show();
 						
 						layer.getSubLayer(0).setInteraction(true);
