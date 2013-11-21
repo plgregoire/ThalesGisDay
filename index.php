@@ -303,7 +303,7 @@
 				//getMoreAccurateLocation(function(location) {
 				//	accuratePosition = location;
 				//});
-				jQuery("html").append('<iframe frameborder="0" src="http://gisday2013atthales.cartodb.com/viz/d0073206-4fb6-11e3-9a7d-1fe839acd8e8/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=false&sublayer_options=1&sql=&zoom=1&center_lat=31.503629305772954&center_lon=73.828125" style="position:absolute; top:0; right:0; width:500px; height:350px"></iframe>')
+				jQuery("html").append('<iframe frameborder="0" src="http://gisday2013atthales.cartodb.com/viz/d0073206-4fb6-11e3-9a7d-1fe839acd8e8/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=false&sublayer_options=1&sql=&zoom=1&center_lat=31.503629305772954&center_lon=30" style="position:absolute; top:0; right:0; width:500px; height:350px"></iframe>')
 			}
 		</script>
 
