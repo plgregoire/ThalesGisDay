@@ -45,8 +45,8 @@
 	</head>
 	
 	<body data-role="page">
-		<div data-role="popup" id="popupSubmitted" data-history="false" data-transition="slidedown">
-		  <p>Thank you for participating, the selected Thales office has been updated<p>
+		<div data-role="popup" id="popupSurveyExpired" data-history="false" data-transition="slidedown">
+		  <p>The time allocated for the GIS Day survey has now expired. Thank you for your participation !<p>
 		</div>
 		<div data-role="popup" id="popupSeeResults" data-history="false" data-transition="slidedown">
 		  <p>Hit the refresh button to bring back the form<p>
@@ -198,9 +198,9 @@
 							function(){
 								refreshLayer();
 								
-								$('#popupSubmitted').popup('open',{
-								  y: 30
-								});
+								//$('#popupSubmitted').popup('open',{
+								//  y: 30
+								//});
 							
 								stopWatchingPosition();
 							});
@@ -216,9 +216,9 @@
 					});
 				});
 												
-				$(document).on('popupafteropen', '#popupSubmitted', function() {					
+				$(document).on('popupafteropen', '#popupSurveyExpired', function() {					
 					setTimeout(function () {
-						$('#popupSubmitted').popup('close');
+						$('#popupSurveyExpired').popup('close');
 					}, 5000);
 				});
 												
@@ -230,8 +230,11 @@
 			 }
 			 
 			window.onload = function() {
-				$("#formPopup").simpledialog2().resize();
+				//$("#formPopup").simpledialog2().resize();
 				
+				$('#popupSurveyExpired').popup('open',{
+				  y: 30
+				});
 				bindEvents();
 				
 				initialisation();
@@ -284,22 +287,23 @@
 						console.log(err);
 					});
 				
-				getLocation(function(location) {
-					getClosestOffice(location, function(feature) {
-						if (feature) {
-							$('#countrySelect').val(feature.properties.country).change();
-							selectedOfficeId = feature.properties.cartodb_id;
-							//getCountryByOffice(feature.properties.cartodb_id, function(countryId) {
-							//	selectedOfficeId = feature.properties.cartodb_id;
-							//	$('#countrySelect').val(countryId).change();
-							//});
-						}
-					});
-				});
+				//getLocation(function(location) {
+				//	getClosestOffice(location, function(feature) {
+				//		if (feature) {
+				//			$('#countrySelect').val(feature.properties.country).change();
+				//			selectedOfficeId = feature.properties.cartodb_id;
+				//			//getCountryByOffice(feature.properties.cartodb_id, function(countryId) {
+				//			//	selectedOfficeId = feature.properties.cartodb_id;
+				//			//	$('#countrySelect').val(countryId).change();
+				//			//});
+				//		}
+				//	});
+				//});
 				
-				getMoreAccurateLocation(function(location) {
-					accuratePosition = location;
-				});
+				//getMoreAccurateLocation(function(location) {
+				//	accuratePosition = location;
+				//});
+				jQuery("html").append('<iframe frameborder="0" src="http://gisday2013atthales.cartodb.com/viz/d0073206-4fb6-11e3-9a7d-1fe839acd8e8/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=false&sublayer_options=1&sql=&zoom=1&center_lat=31.503629305772954&center_lon=73.828125" style="position:absolute; top:0; right:0; width:500px; height:350px"></iframe>')
 			}
 		</script>
 
